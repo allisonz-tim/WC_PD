@@ -1,338 +1,321 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026世界盃 官方賽程與智能預測器</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1, h2 { color: #8a1538; text-align: center; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+        
+        .main-layout { display: flex; gap: 25px; flex-wrap: wrap; }
+        .sidebar { flex: 1; min-width: 360px; background: #fff8f9; padding: 20px; border-radius: 8px; border: 1px solid #ffcdd2; max-height: 850px; overflow-y: auto; }
+        .content-area { flex: 2; min-width: 750px; }
+
+        .priority-item { background: white; padding: 12px; margin-bottom: 10px; border-radius: 6px; border-left: 5px solid #d32f2f; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .priority-item:hover { transform: translateX(5px); background: #ffebee; }
+        .priority-rank { font-weight: bold; color: #d32f2f; font-size: 14px; }
+        .priority-tags { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; }
+        .badge-online { background: #e3f2fd; color: #0d47a1; font-size: 11px; padding: 2px 6px; border-radius: 4px; }
+        .badge-offline { background: #efebe9; color: #4e342e; font-size: 11px; padding: 2px 6px; border-radius: 4px; }
+
+        .control-panel { display: flex; justify-content: start; margin-bottom: 25px; gap: 15px; }
+        select, button { padding: 12px 20px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc; cursor: pointer; }
+        button { background-color: #8a1538; color: white; border: none; font-weight: bold; transition: 0.3s; }
+        button:hover { background-color: #5c0e25; }
+        
+        .match-card { background: #fafafa; border-left: 6px solid #8a1538; padding: 16px; border-radius: 6px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .match-header { display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; color: #777; margin-bottom: 10px; }
+        .match-time-tag { background: #8a1538; color: white; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+        .match-body { display: flex; align-items: center; justify-content: space-between; font-size: 18px; font-weight: bold; }
+        .team { width: 35%; text-align: center; font-size: 19px; }
+        .score-display { font-size: 26px; color: #8a1538; letter-spacing: 2px; font-weight: 900; }
+        .info-box { background: #eef2f7; padding: 12px; margin-top: 12px; border-radius: 6px; font-size: 13.5px; color: #444; line-height: 1.5; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #8a1538; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .q-direct { color: #2e7d32; font-weight: bold; }
+        .q-wildcard { color: #f57c00; font-weight: bold; }
+        
+        .tag-real { background: #e8f5e9; color: #2e7d32; padding: 2px 6px; font-size: 11px; border-radius: 4px; font-weight: bold; }
+        .tag-predict { background: #fff3e0; color: #e65100; padding: 2px 6px; font-size: 11px; border-radius: 4px; font-weight: bold; }
+    </style>
 </head>
-<body> 
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="zh-TW"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;2026世界盃 官方賽程與智能預測器&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container { max-width: 1400px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1, h2 { color: #8a1538; text-align: center; margin-bottom: 5px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.main-layout { display: flex; gap: 25px; flex-wrap: wrap; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.sidebar { flex: 1; min-width: 360px; background: #fff8f9; padding: 20px; border-radius: 8px; border: 1px solid #ffcdd2; max-height: 850px; overflow-y: auto; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.content-area { flex: 2; min-width: 750px; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.priority-item { background: white; padding: 12px; margin-bottom: 10px; border-radius: 6px; border-left: 5px solid #d32f2f; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.priority-item:hover { transform: translateX(5px); background: #ffebee; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.priority-rank { font-weight: bold; color: #d32f2f; font-size: 14px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.priority-tags { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.badge-online { background: #e3f2fd; color: #0d47a1; font-size: 11px; padding: 2px 6px; border-radius: 4px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.badge-offline { background: #efebe9; color: #4e342e; font-size: 11px; padding: 2px 6px; border-radius: 4px; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.control-panel { display: flex; justify-content: start; margin-bottom: 25px; gap: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>select, button { padding: 12px 20px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc; cursor: pointer; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>button { background-color: #8a1538; color: white; border: none; font-weight: bold; transition: 0.3s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>button:hover { background-color: #5c0e25; }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.match-card { background: #fafafa; border-left: 6px solid #8a1538; padding: 16px; border-radius: 6px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.match-header { display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; color: #777; margin-bottom: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.match-time-tag { background: #8a1538; color: white; padding: 2px 6px; border-radius: 4px; font-size: 12px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.match-body { display: flex; align-items: center; justify-content: space-between; font-size: 18px; font-weight: bold; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.team { width: 35%; text-align: center; font-size: 19px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.score-display { font-size: 26px; color: #8a1538; letter-spacing: 2px; font-weight: 900; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.info-box { background: #eef2f7; padding: 12px; margin-top: 12px; border-radius: 6px; font-size: 13.5px; color: #444; line-height: 1.5; }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>table { width: 100%; border-collapse: collapse; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th { background-color: #8a1538; color: white; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tr:nth-child(even) { background-color: #f9f9f9; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.q-direct { color: #2e7d32; font-weight: bold; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.q-wildcard { color: #f57c00; font-weight: bold; }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tag-real { background: #e8f5e9; color: #2e7d32; padding: 2px 6px; font-size: 11px; border-radius: 4px; font-weight: bold; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tag-predict { background: #fff3e0; color: #e65100; padding: 2px 6px; font-size: 11px; border-radius: 4px; font-weight: bold; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;🏆 2026世界盃 官方賽程時間與數據模擬器&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="subtitle"&gt;基準日期：2026年6月14日 ｜ 完整同步 PDF 官方 72 場賽程時間 ｜ 整合線上線下 12 大 Priority 焦點榜&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="main-layout"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="sidebar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 style="color: #8a1538; margin-top: 0; border-bottom: 2px solid #8a1538; padding-bottom: 8px;"&gt;🔥 全球焦點熱度榜 (Top 12)&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p style="font-size: 12px; color: #666;"&gt;點擊下方關鍵大戰，右側立刻動態跳轉：&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('I')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 1 (I組) 法國 vs 挪威&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/24 03:00 姆巴佩 vs 哈蘭德！新雙驕史詩對決。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 觀看預估破 2.5 億&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 現場一票難求&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('J')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 2 (J組) 阿根廷 vs 奧地利&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/20 06:00 藍白軍團榜首大戰，引爆北美票房。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 串流巨量流量&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 黃牛市價破千刀&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('A')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 3 (A組) 墨西哥 vs 南韓&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/16 03:00 高原魔鬼主場，死磕亞洲天王孫興慜。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 亞洲全域核心&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 8.5萬人塞爆現場&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('L')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 4 (L組) 英格蘭 vs 克羅埃西亞&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/17 06:00 歐洲宿敵恩怨，貝林漢姆硬撼莫德里奇。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 傳統強強歐陸戰&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 歐美主流票房&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('F')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 5 (F組) 荷蘭 vs 日本&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/14 06:00 藍武士失去遠藤航後，戰術死磕歐洲傳控。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 技術流球迷最愛&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 全球轉播王牌&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('C')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 6 (C組) 巴西 vs 摩洛哥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/13 03:00 內馬爾傷停隱憂！桑巴技術對決北非雄獅。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 爆冷懸念極高&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 南美/北非熱潮&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('H')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 7 (H組) 西班牙 vs 烏拉圭&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/23 06:00 極致傳控大師對決南美硬漢，火藥味拉滿。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 歐盟/南美黃金檔&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 上座率極佳&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('D')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 8 (D組) 美國 vs 土耳其&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/21 06:00 地主美國分組賽最後一戰，北非收視高點。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 北美收視天花板&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 美國本土狂熱&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('K')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 9 (K組) 葡萄牙 vs 哥倫比亞&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/25 03:00 黃金一代中場，正面碰撞神鋒迪亞斯。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 星光閃耀高點閱&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 票房吸金戰&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('E')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 10 (E組) 德國 vs 厄瓜多&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/22 03:00 日耳曼戰車收官戰，穆西亞拉突圍之爭。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 歐洲核心收視&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 德迷大軍湧入&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('G')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 11 (G組) 比利時 vs 埃及&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/15 03:00 丁丁精準直塞，對決法老王薩拉赫。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 英超老友會收視高&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 非洲區超級焦點&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="priority-item" onclick="quickSwitch('B')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="priority-rank"&gt;★ Top 12 (B組) 加拿大 vs 瑞士&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 13px; margin-top:3px;"&gt;📅 06/20 06:00 楓葉國最後尊嚴之戰，全加舉國沸騰。&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="priority-tags"&gt;&lt;span class="badge-online"&gt;💻 流量狂飆&lt;/span&gt;&lt;span class="badge-offline"&gt;🎫 多倫多球場滿座&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="content-area"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="control-panel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;select id="groupSelect"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="A"&gt;小組賽 A 組 (墨、南非、韓、捷)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="B"&gt;小組賽 B 組 (加、瑞、卡、波黑)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="C"&gt;小組賽 C 組 (巴、摩、蘇、海地)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="D"&gt;小組賽 D 組 (美、澳、巴拉圭、土)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="E"&gt;小組賽 E 組 (德、厄、象牙海岸、古拉索)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="F"&gt;小組賽 F 組 (荷、日本、突尼西亞、瑞典)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="G"&gt;小組賽 G 組 (比利時、伊朗、埃及、紐西蘭)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="H"&gt;小組賽 H 組 (西班牙、烏拉圭、沙烏地、維德角)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="I"&gt;小組賽 I 組 (法國、塞內加爾、挪威、伊拉克)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="J"&gt;小組賽 J 組 (阿根廷、奧地利、阿爾及利亞、約旦)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="K"&gt;小組賽 K 組 (葡萄牙、哥倫比亞、烏茲別克、剛果)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;option value="L"&gt;小組賽 L 組 (英格蘭、克羅埃西亞、巴拿馬、迦納)&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="renderGroup()"&gt;加載官方數據推演&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="tableContainer"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="matchContainer"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">// 全量對應 PDF 官方賽程表與開賽時間數據庫</p>
-<p class="p1">const tournamentData = {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>A: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/12", t: "03:00", h: "墨西哥", a: "南非", hs: 2, as: 0, att: 87523, isReal: true, note: "【真實賽果】墨西哥 2-0 戰勝南非。但後衛隊長 Montes 補時染紅遭遇禁賽3場，墨西哥防空拉響警報。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/12", t: "10:00", h: "南韓", a: "捷克", hs: 2, as: 1, att: 48000, isReal: true, note: "【真實賽果】太極虎 2-1 險勝。極速反擊徹底打穿歐陸防線，成功頂住了捷克最後關頭的高空轟炸。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "03:00", h: "墨西哥", a: "南韓", hs: 1, as: 1, att: 82500, isReal: false, note: "【🔥焦點大賽】墨西哥防線缺少 Montes 坐鎮，面對孫興慜帶領的英超級極速反擊流，主場遺憾 1-1 被逼平。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "10:00", h: "南非", a: "捷克", hs: 0, as: 2, att: 41200, isReal: false, note: "南非兩名首戰紅牌核心停賽。捷克發揮絕對的身體對抗與高空制空權，輕鬆零封對手拿下首勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "03:00", h: "墨西哥", a: "捷克", hs: 2, as: 1, att: 84000, isReal: false, note: "阿茲特克魔鬼主場的低氧高原環境在下半場發威，捷克球員體能極限崩潰，遭到絕殺。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "03:00", h: "南韓", a: "南非", hs: 3, as: 1, att: 46000, isReal: false, note: "李剛仁大師級中場節奏梳理，黃喜燦反擊雙響，南韓大勝昂首鎖定小組頭名。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>B: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/12", t: "06:00", h: "加拿大", a: "波黑", hs: 1, as: 1, att: 45000, isReal: true, note: "【真實賽果】多倫多球場見證激烈拉鋸，加拿大展現恐怖奔跑體能，在落後局勢下 1-1 頑強扳平波黑。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/12", t: "12:00", h: "卡達", a: "瑞士", hs: 0, as: 2, att: 44000, isReal: false, note: "【傷病變數】加拿大核心戴維斯因傷缺陣情況下，同組瑞士憑藉老道防守與反擊輕鬆拿下卡達。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "06:00", h: "加拿大", a: "卡達", hs: 2, as: 0, att: 58000, isReal: false, note: "加拿大展開全場瘋狂高位逼搶，卡達失誤頻頻，前鋒拉林梅開二度輕取對手。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "12:00", h: "波黑", a: "瑞士", hs: 0, as: 1, att: 49500, isReal: false, note: "歐陸沉悶的戰術博弈，瑞士隊憑藉一記關鍵點球一錘定音，用防守傳控徹底消磨掉波黑的反撲。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "06:00", h: "加拿大", a: "瑞士", hs: 1, as: 2, att: 61000, isReal: false, note: "加拿大核心陸續復出，但瑞士老道的防守體系密不透風，客場作戰仍拿下3分穩獲第一。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "06:00", h: "卡達", a: "波黑", hs: 0, as: 3, att: 42000, isReal: false, note: "波黑高中鋒全面制空，卡達後防全面崩潰，波黑收穫大勝全力爭取外卡。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>C: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/13", t: "03:00", h: "巴西", a: "摩洛哥", hs: 1, as: 1, att: 82000, isReal: false, note: "【🔥焦點大賽】巴西巨星內馬爾小腿拉傷無緣此場先發。面對摩洛哥布努組成的鋼鐵防線爆冷被逼平。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/13", t: "10:00", h: "海地", a: "蘇格蘭", hs: 0, as: 2, att: 45000, isReal: false, note: "標準的英式硬朗打法，蘇格蘭牢牢掌握空中制空權，輕鬆擊敗海地。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "03:00", h: "巴西", a: "海地", hs: 5, as: 0, att: 69000, isReal: false, note: "賞心悅目的桑巴進攻秀，海地三線完全崩盤脫節，巴西多點開花狂收大勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "10:00", h: "摩洛哥", a: "蘇格蘭", hs: 2, as: 1, att: 58000, isReal: false, note: "摩洛哥展現精細的中場傳控腳法，切斷了蘇格蘭長傳線路，拿下三分。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "03:00", h: "巴西", a: "蘇格蘭", hs: 3, as: 1, att: 76000, isReal: false, note: "內馬爾火線復出，維尼修斯與羅德里戈極速突破，反覆撕裂蘇格蘭笨重防線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "03:00", h: "摩洛哥", a: "海地", hs: 4, as: 0, att: 41000, isReal: false, note: "實力完全不對等。阿什拉夫右路瘋狂肆虐，北非雄獅大勝大撈淨勝球直通32強。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>D: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/13", t: "06:00", h: "美國", a: "巴拉圭", hs: 4, as: 1, att: 68000, isReal: true, note: "【真實賽果】地主美國在洛杉磯 4-1 血洗巴拉圭！巴洛貢梅開二度，普利西奇雖遭遇驚魂但無大礙。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/13", t: "12:00", h: "澳大利亞", a: "土耳其", hs: 1, as: 2, att: 51000, isReal: false, note: "袋鼠軍團傳接球粗糙失誤偏多。土耳其憑藉兩次防守反擊的致命直塞驚險帶走客場三分。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "06:00", h: "美國", a: "澳大利亞", hs: 2, as: 1, att: 74000, isReal: false, note: "美國隊高壓逼搶能量爆棚，年輕邊鋒群反覆衝擊澳洲防線，一球險勝奪下兩連勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "12:00", h: "巴拉圭", a: "土耳其", hs: 1, as: 2, att: 49000, isReal: false, note: "土耳其中場恰爾汗奧盧大師級調度，巴拉圭前鋒破門乏術，土耳其再度獲勝鎖定出線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "06:00", h: "美國", a: "土耳其", hs: 2, as: 2, att: 79000, isReal: false, note: "【🔥榜首大戰】兩隊皆已確認晉級，放開手腳展開大開大合的對攻，最終戰平攜手直接出線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "06:00", h: "巴拉圭", a: "澳大利亞", hs: 0, as: 1, att: 45500, isReal: false, note: "慘烈的防守肉搏戰，黃牌滿天飛。澳洲在 88 分鐘利用角球混戰打入絕殺，保留外卡微弱生機。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>E: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/14", t: "03:00", h: "德國", a: "庫拉索", hs: 5, as: 0, att: 55000, isReal: false, note: "實力階級碾壓，雖然德軍新星遭遇肌肉撕裂，但德國深度恐怖，替補席登場依舊輕鬆大勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/14", t: "10:00", h: "科特迪瓦", a: "厄瓜多爾", hs: 1, as: 1, att: 52000, isReal: false, note: "兩支硬朗鐵血球隊在中場上演極限肉搏戰，雙方皆無法有效攻入對方腹地，以 1-1 收場。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/18", t: "03:00", h: "德國", a: "科特迪瓦", hs: 2, as: 0, att: 64000, isReal: false, note: "德國通過高效高位逼搶切斷對手中前場傳球軸心，控球率達 62%，穩穩兩連勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/18", t: "10:00", h: "庫拉索", a: "厄瓜多爾", hs: 0, as: 4, att: 41000, isReal: false, note: "厄瓜多中場閘口凱塞多完成多次關鍵攔截，隨後發動立體攻勢，狂刷淨勝球。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/22", t: "03:00", h: "德國", a: "厄瓜多爾", hs: 2, as: 1, att: 68000, isReal: false, note: "德國戰車踢法極其嚴謹，小將穆西亞拉展現無解的禁區前沿盤帶，強行撕裂南美鐵防。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/22", t: "03:00", h: "科特迪瓦", a: "庫拉索", hs: 3, as: 0, att: 38000, isReal: false, note: "非洲大象在身體素質與核心爆發力上完全領先新軍古拉索，邊路予取予求鎖定外卡名額。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>F: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/14", t: "06:00", h: "荷蘭", a: "日本", hs: 2, as: 1, att: 75000, isReal: false, note: "【🔥防線震盪】日本隊長遠藤航重傷宣告退役！藍武士痛失鐵閘。荷蘭雖無西蒙斯仍靠高空球絕殺。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/14", t: "12:00", h: "突尼斯", a: "瑞典", hs: 0, as: 1, att: 46000, isReal: false, note: "北歐海盜展現嚴密制空優勢，前鋒伊薩克上半場單刀低射，一球絕殺突尼西亞。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/18", t: "06:00", h: "荷蘭", a: "瑞典", hs: 2, as: 0, att: 67000, isReal: false, note: "防線核心范迪克統治防空圈，徹底封死瑞典長傳吊鏡戰術，荷蘭兩連勝出線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/18", t: "12:00", h: "日本", a: "突尼斯", hs: 2, as: 0, att: 53000, isReal: false, note: "堂安律前場穿針引線，日本地面傳控全面壓制北非鐵桶陣，穩穩奪下關鍵三分。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/22", t: "06:00", h: "荷蘭", a: "突尼斯", hs: 3, as: 0, att: 58000, isReal: false, note: "橙衣軍團控局實力雄厚，中場完全掐斷對手反擊線，分組賽三戰全勝鎖定榜首。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/22", t: "06:00", h: "日本", a: "瑞典", hs: 2, as: 1, att: 62000, isReal: false, note: "三笘薰、久保建英利用地面「小快靈」傳切，打穿瑞典笨重高大的防線，日本直通32強！" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>G: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/15", t: "03:00", h: "比利時", a: "埃及", hs: 3, as: 1, att: 62000, isReal: false, note: "比利時實行高位窒息式包夾，切斷埃及對薩拉赫的傳球補給線，埃及防線顧此失彼崩盤。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/15", t: "10:00", h: "伊朗", a: "紐西蘭", hs: 1, as: 0, att: 41000, isReal: false, note: "伊朗大軍展現鐵血防守紀律，由塔雷米門前推射絕殺紐西蘭。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/19", t: "03:00", h: "比利時", a: "伊朗", hs: 2, as: 0, att: 54000, isReal: false, note: "中場核心德布勞內送出神級致命直塞，盧卡庫泰山壓頂建功，輕鬆擊碎伊朗鐵桶陣。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/19", t: "10:00", h: "埃及", a: "紐西蘭", hs: 2, as: 1, att: 45000, isReal: false, note: "【法老王時間】薩拉赫右路送出招牌的內切世界波，紐西蘭防線成了重災區。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/23", t: "03:00", h: "比利時", a: "紐西蘭", hs: 4, as: 0, att: 51000, isReal: false, note: "實力差距懸殊。歐洲紅魔半場即取得三球領先，小組第一強勢晉級。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/23", t: "03:00", h: "埃及", a: "伊朗", hs: 2, as: 1, att: 56000, isReal: false, note: "出線生死大戰。薩拉赫下半場反擊中上演 50 米長途奔襲絕殺，將埃及送上小組第二。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>H: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/15", t: "06:00", h: "西班牙", a: "維德角", hs: 4, as: 0, att: 52000, isReal: false, note: "實力階級完全不對等，西班牙全場傳球成功率高達 91%，輕鬆取得大勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/15", t: "12:00", h: "沙烏地阿拉伯", a: "烏拉圭", hs: 0, as: 2, att: 52000, isReal: false, note: "烏拉圭防線穩如磐石，中場強力壓制，零封沙烏地順利拿下開門紅。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/19", t: "06:00", h: "西班牙", a: "沙烏地阿拉伯", hs: 3, as: 0, att: 60500, isReal: false, note: "西班牙青年軍施展極致催眠傳控，沙烏地全場疲於奔命，根本無法將皮球推進過半場。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/19", t: "12:00", h: "維德角", a: "烏拉圭", hs: 0, as: 3, att: 45000, isReal: false, note: "烏拉圭神鋒努涅斯爆發恐怖衝擊力與制空權，上演帽子戲法摧毀對手。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/23", t: "06:00", h: "西班牙", a: "烏拉圭", hs: 1, as: 0, att: 74000, isReal: false, note: "【控球窒息】即便洛佩斯骨折缺陣，鬥牛士依然手握 66% 控球。亞馬爾精彩助攻絕殺南美硬漢。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/23", t: "06:00", h: "維德角", a: "沙烏地阿拉伯", hs: 1, as: 1, att: 41000, isReal: false, note: "沙烏地大軍在北美高原水土不服，傳接球頻頻失誤，末戰無奈戰平雙雙出局。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>I: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "03:00", h: "法國", a: "塞內加爾", hs: 2, as: 1, att: 73000, isReal: false, note: "【鋒線核武】雖前鋒缺陣，但姆巴佩利用恐怖速度強行生吃非洲強硬防線拿下首勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "10:00", h: "伊拉克", a: "挪威", hs: 0, as: 3, att: 44000, isReal: false, note: "「魔人」哈蘭德世界盃首秀！展現無解的禁區統治力，輕鬆上演梅開二度。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "03:00", h: "法國", a: "伊拉克", hs: 4, as: 0, att: 56000, isReal: false, note: "法國實力全面碾壓，高盧雄雞前場攻擊群多點開花，輕鬆收下兩連勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "10:00", h: "塞內加爾", a: "挪威", hs: 1, as: 1, att: 58500, isReal: false, note: "哈蘭德整場遭遇非洲防線瘋狂夾擊肉搏，挪威憑藉強硬對抗驚險握手言和。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/24", t: "03:00", h: "法國", a: "挪威", hs: 2, as: 2, att: 82000, isReal: false, note: "【🔥新雙驕世紀大戰】姆巴佩與哈蘭德頂流正面對轟！雙方大開大合，聯手戰成 2-2 史詩平局。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/24", t: "03:00", h: "塞內加爾", a: "伊拉克", hs: 2, as: 0, att: 40000, isReal: false, note: "特里蘭加雄獅憑藉豐富的大賽經驗與肉搏強度，零封伊拉克，搶下外卡關鍵分。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>J: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "06:00", h: "阿根廷", a: "阿爾及利亞", hs: 3, as: 1, att: 74000, isReal: false, note: "阿根廷前場踢出默契小組配合，勞塔羅（Lautaro）禁區內梅開二度，藍白軍團收穫連勝。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/16", t: "12:00", h: "奧地利", a: "約旦", hs: 3, as: 0, att: 46000, isReal: false, note: "奧地利全場貫徹德式高強度反搶，約旦後衛出球頻頻被斷，奧地利大勝拿足淨勝球。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "06:00", h: "阿根廷", a: "奧地利", hs: 2, as: 0, att: 81000, isReal: false, note: "【🔥中場大師】恩佐與麥卡利斯特中場傳切流暢，精準化解奧地利瘋狂逼搶，穩穩出線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/20", t: "12:00", h: "阿爾及利亞", a: "約旦", hs: 2, as: 0, att: 42000, isReal: false, note: "北非狐狸展現高超的腳下控制。約旦歷史首登世界盃舞台，球員嚴重束手束腳防線送禮。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/24", t: "06:00", h: "阿根廷", a: "約旦", hs: 4, as: 0, att: 78000, isReal: false, note: "實力存在巨大鴻溝，阿根廷行雲流水，半場主力打卡休息，三戰全勝強勢出線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/24", t: "06:00", h: "阿爾及利亞", a: "奧地利", hs: 1, as: 2, att: 53500, isReal: false, note: "歐非直接對決。奧地利憑藉更嚴密的整體防守與定位球高空優勢險勝，鎖定小組次席。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>K: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "03:00", h: "葡萄牙", a: "剛果民主共和國", hs: 3, as: 0, att: 53000, isReal: false, note: "葡萄牙實力碾壓，技術群完全掌控局勢，輕鬆拿下開門紅三連勝奠定基礎。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "10:00", h: "烏茲別克", a: "哥倫比亞", hs: 0, as: 2, att: 55000, isReal: false, note: "哥倫比亞使出老道的大賽經驗，穩紮穩打壓制中亞狼反擊空間，順利拿下三分。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "03:00", h: "葡萄牙", a: "烏茲別克", hs: 2, as: 0, att: 59000, isReal: false, note: "葡萄牙控球率高達 68%。雖然中亞狼擺出鐵桶防禦，依然被席爾瓦突破撕碎防線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "10:00", h: "剛果民主共和國", a: "哥倫比亞", hs: 1, as: 3, att: 50000, isReal: false, note: "南美風暴席捲。路易斯·迪亞斯在左路如入無人之境，剛果防線轉身慢的弱點被反覆針對。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/25", t: "03:00", h: "葡萄牙", a: "哥倫比亞", hs: 2, as: 1, att: 71000, isReal: false, note: "【🔥強強對話】B費與萊奧左路完美連線。哥倫比亞王牌迪亞斯展現極速，但獨木難支。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/25", t: "03:00", h: "烏茲別克", a: "剛果民主共和國", hs: 1, as: 0, att: 39500, isReal: false, note: "中亞狼將防守紀律發揮到極致，死守低位大巴，下半場反擊精準斜傳完成絕殺。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>L: [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "06:00", h: "英格蘭", a: "克羅埃西亞", hs: 2, as: 1, att: 84000, isReal: false, note: "【🔥世紀宿敵】貝林漢姆展現全能中場統治力，哈里·凱恩破門。格子軍團末段體能吃緊。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/17", t: "12:00", h: "迦納", a: "巴拿馬", hs: 2, as: 1, att: 44000, isReal: false, note: "中場庫杜斯突擊力極強，迦納黑星靠速度客場帶走3分。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "06:00", h: "英格蘭", a: "迦納", hs: 2, as: 0, att: 75000, isReal: false, note: "薩卡招牌式右路內切破門，英格蘭牢牢掌控比賽主動權，收穫兩連勝提前出線。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/21", t: "12:00", h: "克羅埃西亞", a: "巴拿馬", hs: 2, as: 0, att: 51000, isReal: false, note: "防線核心格瓦迪奧爾坐鎮後方滴水不漏，格子軍團展現大師級傳控局勢，零封巴拿馬。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/25", t: "06:00", h: "英格蘭", a: "巴拿馬", hs: 4, as: 0, att: 72000, isReal: false, note: "三獅軍團展現恐怖的空中頭槌優勢，斯通斯與凱恩連續砸爛巴拿馬大門，以小組頭名完美收官。" },</p>
-<p class="p1"><span class="Apple-converted-space">        </span>{ d: "2026/06/25", t: "06:00", h: "克羅埃西亞", a: "迦納", hs: 1, as: 1, att: 52000, isReal: false, note: "克羅埃西亞主力陣容年齡偏大，面對迦納黑星瘋狂奔跑與肉搏，體能亮起紅燈無奈收穫平局。" }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>]</p>
-<p class="p1">};</p>
-<p class="p2"><br></p>
-<p class="p1">function quickSwitch(letter) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("groupSelect").value = letter;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>renderGroup();</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function renderGroup() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const groupLetter = document.getElementById("groupSelect").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const matches = tournamentData[groupLetter];</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let standings = {};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let teamsSet = new Set();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>matches.forEach(m =&gt; { teamsSet.add(m.h); teamsSet.add(m.a); });</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let teamList = Array.from(teamsSet);</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>teamList.forEach(t =&gt; standings[t] = { name: t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0 });</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>matches.forEach(m =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>standings[m.h].gf += m.hs; standings[m.h].ga += m.as;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>standings[m.a].gf += m.as; standings[m.a].ga += m.hs;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if(m.hs &gt; m.as) { standings[m.h].p += 3; standings[m.h].w++; standings[m.a].l++; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>else if(m.hs &lt; m.as) { standings[m.a].p += 3; standings[m.a].w++; standings[m.h].l++; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>else { standings[m.h].p += 1; standings[m.a].p += 1; standings[m.h].d++; standings[m.a].d++; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let sorted = Object.values(standings).sort((a,b) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if(b.p !== a.p) return b.p - a.p;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return (b.gf - b.ga) - (a.gf - a.ga);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let tableHtml = `&lt;h2&gt;📊 Group ${groupLetter} 官方預期積分榜&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th&gt;排名&lt;/th&gt;&lt;th&gt;球隊&lt;/th&gt;&lt;th&gt;勝&lt;/th&gt;&lt;th&gt;平&lt;/th&gt;&lt;th&gt;負&lt;/th&gt;&lt;th&gt;進/失球&lt;/th&gt;&lt;th&gt;淨勝球&lt;/th&gt;&lt;th&gt;積分&lt;/th&gt;&lt;th&gt;出線狀態&lt;/th&gt;&lt;/tr&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>sorted.forEach((t, i) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>t.gd = t.gf - t.ga;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let status = i &lt; 2 ? "&lt;span class='q-direct'&gt;直通 32 強&lt;/span&gt;" : (i === 2 ? "&lt;span class='q-wildcard'&gt;爭取第三名&lt;/span&gt;" : "小組淘汰");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tableHtml += `&lt;tr&gt;&lt;td&gt;${i+1}&lt;/td&gt;&lt;td&gt;&lt;strong&gt;${t.name}&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;${t.w}&lt;/td&gt;&lt;td&gt;${t.d}&lt;/td&gt;&lt;td&gt;${t.l}&lt;/td&gt;&lt;td&gt;${t.gf}/${t.ga}&lt;/td&gt;&lt;td&gt;${t.gd &gt; 0 ? '+'+t.gd : t.gd}&lt;/td&gt;&lt;td&gt;&lt;strong&gt;${t.p}&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;${status}&lt;/td&gt;&lt;/tr&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>tableHtml += `&lt;/table&gt;`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let matchHtml = `&lt;h2&gt;🔥 Group ${groupLetter} 逐場分析 (含開賽時間)&lt;/h2&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>matches.forEach(m =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let tag = m.isReal ? "&lt;span class='tag-real'&gt;真實賽果&lt;/span&gt;" : "&lt;span class='tag-predict'&gt;智能預測&lt;/span&gt;";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>matchHtml += `</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="match-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="match-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;📅 ${m.d} &lt;span class="match-time-tag"&gt;⏰ ${m.t}&lt;/span&gt; ｜ 🏟️ 觀眾: ${m.att.toLocaleString()}人&lt;/span&gt;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;${tag} ${m.prob ? '｜ ' + m.prob : ''}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="match-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="team"&gt;${m.h}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="score-display"&gt;${m.hs} : ${m.as}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="team"&gt;${m.a}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="info-box"&gt;${m.note}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("tableContainer").innerHTML = tableHtml;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("matchContainer").innerHTML = matchHtml;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">window.onload = function() { renderGroup(); };</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body>
+
+<div class="container">
+    <h1>🏆 2026世界盃 官方賽程時間與數據模擬器</h1>
+    <div class="subtitle">基準日期：2026年6月14日 ｜ 完整同步 PDF 官方 72 場賽程時間 ｜ 整合線上線下 12 大 Priority 焦點榜</div>
+    
+    <div class="main-layout">
+        <div class="sidebar">
+            <h3>🔥 全球焦點熱度榜 (Top 12)</h3>
+            <p style="font-size: 12px; color: #666;">點擊下方關鍵大戰，右側立刻動態跳轉：</p>
+            
+            <div class="priority-item" onclick="quickSwitch('I')">
+                <span class="priority-rank">★ Top 1 (I組) 法國 vs 挪威</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/24 03:00 姆巴佩 vs 哈蘭德！新雙驕史詩對決。</div>
+                <div class="priority-tags"><span class="badge-online">💻 觀看預估破 2.5 億</span><span class="badge-offline">🎫 現場一票難求</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('J')">
+                <span class="priority-rank">★ Top 2 (J組) 阿根廷 vs 奧地利</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/20 06:00 藍白軍團榜首大戰，引爆北美票房。</div>
+                <div class="priority-tags"><span class="badge-online">💻 串流巨量流量</span><span class="badge-offline">🎫 黃牛市價破千刀</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('A')">
+                <span class="priority-rank">★ Top 3 (A組) 墨西哥 vs 南韓</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/16 03:00 高原魔鬼主場，死磕亞洲天王孫興慜。</div>
+                <div class="priority-tags"><span class="badge-online">💻 亞洲全域核心</span><span class="badge-offline">🎫 8.5萬人塞爆現場</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('L')">
+                <span class="priority-rank">★ Top 4 (L組) 英格蘭 vs 克羅埃西亞</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/17 06:00 歐洲宿敵恩怨，貝林漢姆硬撼莫德里奇。</div>
+                <div class="priority-tags"><span class="badge-online">💻 傳統強強歐陸戰</span><span class="badge-offline">🎫 歐美主流票房</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('F')">
+                <span class="priority-rank">★ Top 5 (F組) 荷蘭 vs 日本</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/14 06:00 藍武士失去遠藤航後，戰術死磕歐洲傳控。</div>
+                <div class="priority-tags"><span class="badge-online">💻 技術流球迷最愛</span><span class="badge-offline">🎫 全球轉播王牌</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('C')">
+                <span class="priority-rank">★ Top 6 (C組) 巴西 vs 摩洛哥</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/13 03:00 內馬爾傷停隱憂！桑巴技術對決北非雄獅。</div>
+                <div class="priority-tags"><span class="badge-online">💻 爆冷懸念極高</span><span class="badge-offline">🎫 南美/北非熱潮</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('H')">
+                <span class="priority-rank">★ Top 7 (H組) 西班牙 vs 烏拉圭</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/23 06:00 極致傳控大師對決南美硬漢，火藥味拉滿。</div>
+                <div class="priority-tags"><span class="badge-online">💻 歐盟/南美黃金檔</span><span class="badge-offline">🎫 上座率極佳</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('D')">
+                <span class="priority-rank">★ Top 8 (D組) 美國 vs 土耳其</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/21 06:00 地主美國分組賽最後一戰，北非收視高點。</div>
+                <div class="priority-tags"><span class="badge-online">💻 北美收視天花板</span><span class="badge-offline">🎫 美國本土狂熱</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('K')">
+                <span class="priority-rank">★ Top 9 (K組) 葡萄牙 vs 哥倫比亞</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/25 03:00 黃金一代中場，正面碰撞神鋒迪亞斯。</div>
+                <div class="priority-tags"><span class="badge-online">💻 星光閃耀高點閱</span><span class="badge-offline">🎫 票房吸金戰</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('E')">
+                <span class="priority-rank">★ Top 10 (E組) 德國 vs 厄瓜多</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/22 03:00 日耳曼戰車收官戰，穆西亞拉突圍之爭。</div>
+                <div class="priority-tags"><span class="badge-online">💻 歐洲核心收視</span><span class="badge-offline">🎫 德迷大軍湧入</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('G')">
+                <span class="priority-rank">★ Top 11 (G組) 比利時 vs 埃及</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/15 03:00 丁丁精準直塞，對決法老王薩拉赫。</div>
+                <div class="priority-tags"><span class="badge-online">💻 英超老友會收視高</span><span class="badge-offline">🎫 非洲區超級焦點</span></div>
+            </div>
+
+            <div class="priority-item" onclick="quickSwitch('B')">
+                <span class="priority-rank">★ Top 12 (B組) 加拿大 vs 瑞士</span>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/20 06:00 楓葉國最後尊嚴之戰，全加舉國沸騰。</div>
+                <div class="priority-tags"><span class="badge-online">💻 流量狂飆</span><span class="badge-offline">🎫 多倫多球場滿座</span></div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="control-panel">
+                <select id="groupSelect">
+                    <option value="A">小組賽 A 組 (墨、南非、韓、捷)</option>
+                    <option value="B">小組賽 B 組 (加、瑞、卡、波黑)</option>
+                    <option value="C">小組賽 C 組 (巴、摩、蘇、海地)</option>
+                    <option value="D">小組賽 D 組 (美、澳、巴拉圭、土)</option>
+                    <option value="E">小組賽 E 組 (德、厄、象牙海岸、古拉索)</option>
+                    <option value="F">小組賽 F 組 (荷、日本、突尼西亞、瑞典)</option>
+                    <option value="G">小組賽 G 組 (比利時、伊朗、埃及、紐西蘭)</option>
+                    <option value="H">小組賽 H 組 (西班牙、烏拉圭、沙烏地、維德角)</option>
+                    <option value="I">小組賽 I 組 (法國、塞內加爾、挪威、伊拉克)</option>
+                    <option value="J">小組賽 J 組 (阿根廷、奧地利、阿爾及利亞、約旦)</option>
+                    <option value="K">小組賽 K 組 (葡萄牙、哥倫比亞、烏茲別克、剛果)</option>
+                    <option value="L">小組賽 L 組 (英格蘭、克羅埃西亞、巴拿馬、迦納)</option>
+                </select>
+                <button onclick="renderGroup()">加載官方數據推演</button>
+            </div>
+
+            <div id="tableContainer"></div>
+            <div id="matchContainer"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const tournamentData = {
+    A: [
+        { d: "2026/06/12", t: "03:00", h: "墨西哥", a: "南非", hs: 2, as: 0, att: 87523, isReal: true, note: "【真實賽果】墨西哥 2-0 戰勝南非。但後衛隊長 Montes 補時染紅遭遇禁賽3場，墨西哥防空拉響警報。" },
+        { d: "2026/06/12", t: "10:00", h: "南韓", a: "捷克", hs: 2, as: 1, att: 48000, isReal: true, note: "【真實賽果】太極虎 2-1 險勝。極速反擊徹底打穿歐陸防線，成功頂住了捷克最後關頭的高空轟炸。" },
+        { d: "2026/06/16", t: "03:00", h: "墨西哥", a: "南韓", hs: 1, as: 1, att: 82500, isReal: false, note: "【🔥焦點大賽】墨西哥防線缺少 Montes 坐鎮，面對孫興慜帶領的英超級極速反擊流，主場遺憾 1-1 被逼平。" },
+        { d: "2026/06/16", t: "10:00", h: "南非", a: "捷克", hs: 0, as: 2, att: 41200, isReal: false, note: "南非兩名首戰紅牌核心停賽。捷克發揮絕對的身體對抗與高空制空權，輕鬆零封對手拿下首勝。" },
+        { d: "2026/06/20", t: "03:00", h: "墨西哥", a: "捷克", hs: 2, as: 1, att: 84000, isReal: false, note: "阿茲特克魔鬼主場的低氧高原環境在下半場發威，捷克球員體能極限崩潰，遭到絕殺。" },
+        { d: "2026/06/20", t: "03:00", h: "南韓", a: "南非", hs: 3, as: 1, att: 46000, isReal: false, note: "李剛仁大師級中場節奏梳理，黃喜燦反擊雙響，南韓大勝昂首鎖定小組頭名。" }
+    ],
+    B: [
+        { d: "2026/06/12", t: "06:00", h: "加拿大", a: "波黑", hs: 1, as: 1, att: 45000, isReal: true, note: "【真實賽果】多倫多球場見證激烈拉鋸，加拿大展現恐怖奔跑體能，在落後局勢下 1-1 頑強扳平波黑。" },
+        { d: "2026/06/12", t: "12:00", h: "卡達", a: "瑞士", hs: 0, as: 2, att: 44000, isReal: false, note: "【傷病變數】加拿大核心戴維斯因傷缺陣情況下，同組瑞士憑藉老道防守與反擊輕鬆拿下卡達。" },
+        { d: "2026/06/16", t: "06:00", h: "加拿大", a: "卡達", hs: 2, as: 0, att: 58000, isReal: false, note: "加拿大展開全場瘋狂高位逼搶，卡達失誤頻頻，前鋒拉林梅開二度輕取對手。" },
+        { d: "2026/06/16", t: "12:00", h: "波黑", a: "瑞士", hs: 0, as: 1, att: 49500, isReal: false, note: "歐陸沉悶的戰術博弈，瑞士隊憑藉一記關鍵點球一錘定音，用防守傳控徹底消磨掉波黑的反撲。" },
+        { d: "2026/06/20", t: "06:00", h: "加拿大", a: "瑞士", hs: 1, as: 2, att: 61000, isReal: false, note: "加拿大核心陸續復出，外加瑞士老道的防守體系密不透風，客場作戰仍拿下3分穩獲第一。" },
+        { d: "2026/06/20", t: "06:00", h: "卡達", a: "波黑", hs: 0, as: 3, att: 42000, isReal: false, note: "波黑高中鋒全面制空，卡達後防全面崩潰，波黑收穫大勝全力爭取外卡。" }
+    ],
+    C: [
+        { d: "2026/06/13", t: "03:00", h: "巴西", a: "摩洛哥", hs: 1, as: 1, att: 82000, isReal: false, note: "【🔥焦點大賽】巴西巨星內馬爾小腿拉傷無緣此場先發。面對摩洛哥布努組成的鋼鐵防線爆冷被逼平。" },
+        { d: "2026/06/13", t: "10:00", h: "海地", a: "蘇格蘭", hs: 0, as: 2, att: 45000, isReal: false, note: "標準的英式硬朗打法，蘇格蘭牢牢掌握空中制空權，輕鬆擊敗海地。" },
+        { d: "2026/06/17", t: "03:00", h: "巴西", a: "海地", hs: 5, as: 0, att: 69000, isReal: false, note: "賞心悅目的桑巴進攻秀，海地三線完全崩盤脫節，巴西多點開花狂收大勝。" },
+        { d: "2026/06/17", t: "10:00", h: "摩洛哥", a: "蘇格蘭", hs: 2, as: 1, att: 58000, isReal: false, note: "摩洛哥展現精細的中場傳控腳法，切斷了蘇格蘭長傳線路，拿下三分。" },
+        { d: "2026/06/21", t: "03:00", h: "巴西", a: "蘇格蘭", hs: 3, as: 1, att: 76000, isReal: false, note: "內馬爾火線復出，維尼修斯與羅德里戈極速突破，反覆撕裂蘇格蘭笨重防線。" },
+        { d: "2026/06/21", t: "03:00", h: "摩洛哥", a: "海地", hs: 4, as: 0, att: 41000, isReal: false, note: "實力完全不對等。阿什拉夫右路瘋狂肆虐，北非雄獅大勝大撈淨勝球直通32強。" }
+    ],
+    D: [
+        { d: "2026/06/13", t: "06:00", h: "美國", a: "巴拉圭", hs: 4, as: 1, att: 68000, isReal: true, note: "【真實賽果】地主美國在洛杉磯 4-1 血洗巴拉圭！巴洛貢梅開二度，普利西奇雖遭遇驚魂但無大礙。" },
+        { d: "2026/06/13", t: "12:00", h: "澳大利亞", a: "土耳其", hs: 1, as: 2, att: 51000, isReal: false, note: "袋鼠軍團傳接球粗糙失誤偏多。土耳其憑藉兩次防守反擊的致命直塞驚險帶走客場三分。" },
+        { d: "2026/06/17", t: "06:00", h: "美國", a: "澳大利亞", hs: 2, as: 1, att: 74000, isReal: false, note: "美國隊高壓逼搶能量爆棚，年輕邊鋒群反覆衝擊澳洲防線，一球險勝奪下兩連勝。" },
+        { d: "2026/06/17", t: "12:00", h: "巴拉圭", a: "土耳其", hs: 1, as: 2, att: 49000, isReal: false, note: "土耳其中場恰爾汗奧盧大師級調度，巴拉圭前鋒破門乏術，土耳其再度獲勝鎖定出線。" },
+        { d: "2026/06/21", t: "06:00", h: "美國", a: "土耳其", hs: 2, as: 2, att: 79000, isReal: false, note: "【🔥榜首大戰】兩隊皆已確認晉級，放開手腳展開大開大合的對攻，最終戰平攜手直接出線。" },
+        { d: "2026/06/21", t: "06:00", h: "巴拉圭", a: "澳大利亞", hs: 0, as: 1, att: 45500, isReal: false, note: "慘烈的防守肉搏戰，黃牌滿天飛。澳洲在 88 分鐘利用角球混戰打入絕殺，保留外卡微弱生機。" }
+    ],
+    E: [
+        { d: "2026/06/14", t: "03:00", h: "德國", a: "庫拉索", hs: 5, as: 0, att: 55000, isReal: false, note: "實力階級碾壓，雖然德軍新星遭遇肌肉撕裂，但德國深度恐怖，替補席登場依舊輕鬆大勝。" },
+        { d: "2026/06/14", t: "10:00", h: "科特迪瓦", a: "厄瓜多爾", hs: 1, as: 1, att: 52000, isReal: false, note: "兩支硬朗鐵血球隊在中場上演極限肉搏戰，雙方皆無法有效攻入對方腹地，以 1-1 收場。" },
+        { d: "2026/06/18", t: "03:00", h: "德國", a: "科特迪瓦", hs: 2, as: 0, att: 64000, isReal: false, note: "德國通過高效高位逼搶切斷對手中前場傳球軸心，控球率達 62%，穩穩兩連勝。" },
+        { d: "2026/06/18", t: "10:00", h: "庫拉索", a: "厄瓜多爾", hs: 0, as: 4, att: 41000, isReal: false, note: "厄瓜多中場閘口凱塞多完成多次關鍵攔截，隨後發動立體攻勢，狂刷淨勝球。" },
+        { d: "2026/06/22", t: "03:00", h: "德國", a: "厄瓜多爾", hs: 2, as: 1, att: 68000, isReal: false, note: "德國戰車踢法極其嚴謹，小將穆西亞拉展現無解的禁區前沿盤帶，強行撕裂南美鐵防。" },
+        { d: "2026/06/22", t: "03:00", h: "科特迪瓦", a: "庫拉索", hs: 3, as: 0, att: 38000, isReal: false, note: "非洲大象在身體素質與核心爆發力上完全領先新軍古拉索，邊路予取予求鎖定外卡名額。" }
+    ],
+    F: [
+        { d: "2026/06/14", t: "06:00", h: "荷蘭", a: "日本", hs: 2, as: 1, att: 75000, isReal: false, note: "【🔥防線震盪】日本隊長遠藤航重傷宣告退役！藍武士痛失鐵閘。荷蘭雖無西蒙斯仍靠高空球絕殺。" },
+        { d: "2026/06/14", t: "12:00", h: "突尼斯", a: "瑞典", hs: 0, as: 1, att: 46000, isReal: false, note: "北歐海盜展現嚴密制空優勢，前鋒伊薩克上半場單刀低射，一球絕殺突尼西亞。" },
+        { d: "2026/06/18", t: "06:00", h: "荷蘭", a: "瑞典", hs: 2, as: 0, att: 67000, isReal: false, note: "防線核心范迪克統治防空圈，徹底封死瑞典長傳吊鏡戰術，荷蘭兩連勝出線。" },
+        { d: "2026/06/18", t: "12:00", h: "日本", a: "突尼斯", hs: 2, as: 0, att: 53000, isReal: false, note: "堂安律前場穿針引線，日本地面傳控全面壓制北非鐵桶陣，穩穩奪下關鍵三分。" },
+        { d: "2026/06/22", t: "06:00", h: "荷蘭", a: "突尼斯", hs: 3, as: 0, att: 58000, isReal: false, note: "橙衣軍團控局實力雄厚，中場完全掐斷對手反擊線，分組賽三戰全勝鎖定榜首。" },
+        { d: "2026/06/22", t: "06:00", h: "日本", a: "瑞典", hs: 2, as: 1, att: 62000, isReal: false, note: "三笘薰、久保建英利用地面「小快靈」傳切，打穿瑞典笨重高大的防線，日本直通32強！" }
+    ],
+    G: [
+        { d: "2026/06/15", t: "03:00", h: "比利時", a: "埃及", hs: 3, as: 1, att: 62000, isReal: false, note: "比利時實行高位窒息式包夾，切斷埃及對薩拉赫的傳球補給線，埃及防線顧此失彼崩盤。" },
+        { d: "2026/06/15", t: "10:00", h: "伊朗", a: "紐西蘭", hs: 1, as: 0, att: 41000, isReal: false, note: "伊朗大軍展現鐵血防守紀律，由塔雷米門前推射絕殺紐西蘭。" },
+        { d: "2026/06/19", t: "03:00", h: "比利時", a: "伊朗", hs: 2, as: 0, att: 54000, isReal: false, note: "中場核心德布勞內送出神級致命直塞，盧卡庫泰山壓頂建功，輕鬆擊碎伊朗鐵桶陣。" },
+        { d: "2026/06/19", t: "10:00", h: "埃及", a: "紐西蘭", hs: 2, as: 1, att: 45000, isReal: false, note: "【法老王時間】薩拉赫右路送出招牌的內切世界波，紐西蘭防線成了重災區。" },
+        { d: "2026/06/23", t: "03:00", h: "比利時", a: "紐西蘭", hs: 4, as: 0, att: 51000, isReal: false, note: "實力差距懸殊。歐洲紅魔半場即取得三球領先，小組第一強勢晉級。" },
+        { d: "2026/06/23", t: "03:00", h: "埃及", a: "伊朗", hs: 2, as: 1, att: 56000, isReal: false, note: "出線生死大戰。薩拉赫下半場反擊中上演 50 米長途奔襲絕殺，將埃及送上小組第二。" }
+    ],
+    H: [
+        { d: "2026/06/15", t: "06:00", h: "西班牙", a: "維德角", hs: 4, as: 0, att: 52000, isReal: false, note: "實力階級完全不對等，西班牙全場傳球成功率高達 91%，輕鬆取得大勝。" },
+        { d: "2026/06/15", t: "12:00", h: "沙烏地阿拉伯", a: "烏拉圭", hs: 0, as: 2, att: 52000, isReal: false, note: "烏拉圭防線穩如磐石，中場強力壓制，零封沙烏地順利拿下開門紅。" },
+        { d: "2026/06/19", t: "06:00", h: "西班牙", a: "沙烏地阿拉伯", hs: 3, as: 0, att: 60500, isReal: false, note: "西班牙青年軍施展極致催眠傳控，沙烏地全場疲於奔命，根本無法將皮球推進過半場。" },
+        { d: "2026/06/19", t: "12:00", h: "維德角", a: "烏拉圭", hs: 0, as: 3, att: 45000, isReal: false, note: "烏拉圭神鋒努涅斯爆發恐怖衝擊力與制空權，上演帽子戲法摧毀對手。" },
+        { d: "2026/06/23", t: "06:00", h: "西班牙", a: "烏拉圭", hs: 1, as: 0, att: 74000, isReal: false, note: "【控球窒息】即便洛佩斯骨折缺陣，鬥牛士依然手握 66% 控球。亞馬爾精彩助攻絕殺南美硬漢。" },
+        { d: "2026/06/23", t: "06:00", h: "維德角", a: "沙烏地阿拉伯", hs: 1, as: 1, att: 41000, isReal: false, note: "沙烏地大軍在北美高原水土不服，傳接球頻頻失誤，末戰無奈戰平雙雙出局。" }
+    ],
+    I: [
+        { d: "2026/06/16", t: "03:00", h: "法國", a: "塞內加爾", hs: 2, as: 1, att: 73000, isReal: false, note: "【鋒線核武】雖前鋒缺陣，但姆巴佩利用恐怖速度強行生吃非洲強硬防線拿下首勝。" },
+        { d: "2026/06/16", t: "10:00", h: "伊拉克", a: "挪威", hs: 0, as: 3, att: 44000, isReal: false, note: "「魔人」哈蘭德世界盃首秀！展現無解的禁區統治力，輕鬆上演梅開二度。" },
+        { d: "2026/06/20", t: "03:00", h: "法國", a: "伊拉克", hs: 4, as: 0, att: 56000, isReal: false, note: "法國實力全面碾壓，高盧雄雞前場攻擊群多點開花，輕鬆收下兩連勝。" },
+        { d: "2026/06/20", t: "10:00", h: "塞內加爾", a: "挪威", hs: 1, as: 1, att: 58500, isReal: false, note: "哈蘭德整場遭遇非洲防線瘋狂夾擊肉搏，挪威憑藉強硬對抗驚險握手言和。" },
+        { d: "2026/06/24", t: "03:00", h: "法國", a: "挪威", hs: 2, as: 2, att: 82000, isReal: false, note: "【🔥新雙驕世紀大戰】姆巴佩與哈蘭德頂流正面對轟！雙方大開大合，聯手戰成 2-2 史詩平局。" },
+        { d: "2026/06/24", t: "03:00", h: "塞內加爾", a: "伊拉克", hs: 2, as: 0, att: 40000, isReal: false, note: "特里蘭加雄獅憑藉豐富的大賽經驗與肉搏強度，零封伊拉克，搶下外卡關鍵分。" }
+    ],
+    J: [
+        { d: "2026/06/16", t: "06:00", h: "阿根廷", a: "阿爾及利亞", hs: 3, as: 1, att: 74000, isReal: false, note: "阿根廷前場踢出默契小組配合，勞塔羅（Lautaro）禁區內梅開二度，藍白軍團收穫連勝。" },
+        { d: "2026/06/16", t: "12:00", h: "奧地利", a: "約旦", hs: 3, as: 0, att: 46000, isReal: false, note: "奧地利全場貫徹德式高強度反搶，約旦後衛出球頻頻被斷，奧地利大勝拿足淨勝球。" },
+        { d: "2026/06/20", t: "06:00", h: "阿根廷", a: "奧地利", hs: 2, as: 0, att: 81000, isReal: false, note: "【🔥中場大師】恩佐與麥卡利斯特中場傳切流暢，精準化解奧地利瘋狂逼搶，穩穩出線。" },
+        { d: "2026/06/20", t: "12:00", h: "阿爾及利亞", a: "約旦", hs: 2, as: 0, att: 42000, isReal: false, note: "北非狐狸展現高超的腳下控制。約旦歷史首登世界盃舞台，球員嚴重束手束腳防線送禮。" },
+        { d: "2026/06/24", t: "06:00", h: "阿根廷", a: "約旦", hs: 4, as: 0, att: 78000, isReal: false, note: "實力存在巨大鴻溝，阿根廷行雲流水，半場主力打卡休息，三戰全勝強勢出線。" },
+        { d: "2026/06/24", t: "06:00", h: "阿爾及利亞", a: "奧地利", hs: 1, as: 2, att: 53500, isReal: false, note: "歐非直接對決。奧地利憑藉更嚴密的整體防守與定位球高空優勢險勝，鎖定小組次席。" }
+    ],
+    K: [
+        { d: "2026/06/17", t: "03:00", h: "葡萄牙", a: "剛果民主共和國", hs: 3, as: 0, att: 53000, isReal: false, note: "葡萄牙實力碾壓，技術群完全掌控局勢，輕鬆拿下開門紅三連勝奠定基礎。" },
+        { d: "2026/06/17", t: "10:00", h: "烏茲別克", a: "哥倫比亞", hs: 0, as: 2, att: 55000, isReal: false, note: "哥倫比亞使出老道的大賽經驗，穩紮穩打壓制中亞狼反擊空間，順利拿下三分。" },
+        { d: "2026/06/21", t: "03:00", h: "葡萄牙", a: "烏茲別克", hs: 2, as: 0, att: 59000, isReal: false, note: "葡萄牙控球率高達 68%。雖然中亞狼擺出鐵桶防禦，依然被席爾瓦突破撕碎防線。" },
+        { d: "2026/06/21", t: "10:00", h: "剛果民主共和國", a: "哥倫比亞", hs: 1, as: 3, att: 50000, isReal: false, note: "南美風暴席捲。路易斯·迪亞斯在左路如入無人之境，剛果防線轉身慢的弱點被反覆針對。" },
+        { d: "2026/06/25", t: "03:00", h: "葡萄牙", a: "哥倫比亞", hs: 2, as: 1, att: 71000, isReal: false, note: "【🔥強強對話】B費與萊奧左路完美連線。哥倫比亞王牌迪亞斯展現極速，但獨木難支。" },
+        { d: "2026/06/25", t: "03:00", h: "烏茲別克", a: "剛果民主共和國", hs: 1, as: 0, att: 39500, isReal: false, note: "中亞狼將防守紀律發揮到極致，死守低位大巴，下半場反擊精準斜傳完成絕殺。" }
+    ],
+    L: [
+        { d: "2026/06/17", t: "06:00", h: "英格蘭", a: "克羅埃西亞", hs: 2, as: 1, att: 84000, isReal: false, note: "【🔥世紀宿敵】貝林漢姆展現全能中場統治力，哈里·凱恩破門。格子軍團末段體能吃緊。" },
+        { d: "2026/06/17", t: "12:00", h: "迦納", a: "巴拿馬", hs: 2, as: 1, att: 44000, isReal: false, note: "中場庫杜斯突擊力極強，迦納黑星靠速度客場帶走3分。" },
+        { d: "2026/06/21", t: "06:00", h: "英格蘭", a: "迦納", hs: 2, as: 0, att: 75000, isReal: false, note: "薩卡招牌式右路內切破門，英格蘭牢牢掌控比賽主動權，收穫兩連勝提前出線。" },
+        { d: "2026/06/21", t: "12:00", h: "克羅埃西亞", a: "巴拿馬", hs: 2, as: 0, att: 51000, isReal: false, note: "防線核心格瓦迪奧爾坐鎮後方滴水不漏，格子軍團展現大師級傳控局勢，零封巴拿馬。" },
+        { d: "2026/06/25", t: "06:00", h: "英格蘭", a: "巴拿馬", hs: 4, as: 0, att: 72000, isReal: false, note: "三獅軍團展現恐怖的空中頭槌優勢，斯通斯與凱恩連續砸爛巴拿馬大門，以小組頭名完美收官。" },
+        { d: "2026/06/25", t: "06:00", h: "克羅埃西亞", a: "迦納", hs: 1, as: 1, att: 52000, isReal: false, note: "克羅埃西亞主力陣容年齡偏大，面對迦納黑星瘋狂奔跑與肉搏，體能亮起紅燈無奈收穫平局。" }
+    ]
+};
+
+function quickSwitch(letter) {
+    document.getElementById("groupSelect").value = letter;
+    renderGroup();
+}
+
+function renderGroup() {
+    const groupLetter = document.getElementById("groupSelect").value;
+    const matches = tournamentData[groupLetter];
+    
+    let standings = {};
+    let teamsSet = new Set();
+    matches.forEach(m => { teamsSet.add(m.h); teamsSet.add(m.a); });
+    let teamList = Array.from(teamsSet);
+    
+    teamList.forEach(t => standings[t] = { name: t, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0 });
+
+    matches.forEach(m => {
+        standings[m.h].gf += m.hs; standings[m.h].ga += m.as;
+        standings[m.a].gf += m.as; standings[m.a].ga += m.hs;
+        if(m.hs > m.as) { standings[m.h].p += 3; standings[m.h].w++; standings[m.a].l++; }
+        else if(m.hs < m.as) { standings[m.a].p += 3; standings[m.a].w++; standings[m.h].l++; }
+        else { standings[m.h].p += 1; standings[m.a].p += 1; standings[m.h].d++; standings[m.a].d++; }
+    });
+
+    let sorted = Object.values(standings).sort((a,b) => {
+        if(b.p !== a.p) return b.p - a.p;
+        return (b.gf - b.ga) - (a.gf - a.ga);
+    });
+
+    let tableHtml = `<h2>📊 Group ${groupLetter} 官方預期積分榜</h2>
+        <table>
+            <tr><th>排名</th><th>球隊</th><th>勝</th><th>平</th><th>負</th><th>進/失球</th><th>淨勝球</th><th>積分</th><th>出線狀態</th></tr>`;
+    sorted.forEach((t, i) => {
+        t.gd = t.gf - t.ga;
+        let status = i < 2 ? "<span class='q-direct'>直通 32 強</span>" : (i === 2 ? "<span class='q-wildcard'>爭取第三名</span>" : "小組淘汰");
+        tableHtml += `<tr><td>${i+1}</td><td><strong>${t.name}</strong></td><td>${t.w}</td><td>${t.d}</td><td>${t.l}</td><td>${t.gf}/${t.ga}</td><td>${t.gd > 0 ? '+'+t.gd : t.gd}</td><td><strong>${t.p}</strong></td><td>${status}</td></tr>`;
+    });
+    tableHtml += `</table>`;
+
+    let matchHtml = `<h2>🔥 Group ${groupLetter} 逐場分析 (含開賽時間)</h2>`;
+    matches.forEach(m => {
+        let tag = m.isReal ? "<span class='tag-real'>真實賽果</span>" : "<span class='tag-predict'>智能預測</span>";
+        matchHtml += `
+            <div class="match-card">
+                <div class="match-header">
+                    <span>📅 ${m.d} <span class="match-time-tag">⏰ ${m.t}</span> ｜ 🏟️ 觀眾: ${m.att.toLocaleString()}人</span> 
+                    <span>${tag} ${m.prob ? '｜ ' + m.prob : ''}</span>
+                </div>
+                <div class="match-body">
+                    <div class="team">${m.h}</div>
+                    <div class="score-display">${m.hs} : ${m.as}</div>
+                    <div class="team">${m.a}</div>
+                </div>
+                <div class="info-box">${m.note}</div>
+            </div>`;
+    });
+
+    document.getElementById("tableContainer").innerHTML = tableHtml;
+    document.getElementById("matchContainer").innerHTML = matchHtml;
+}
+
+window.onload = function() { renderGroup(); };
+</script>
 </body>
 </html>
