@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026世界盃 官方賽程與智能預測器</title>
+    <title>2026世界盃 32強預測器</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
         .container { max-width: 1400px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -48,8 +48,8 @@
 <body>
 
 <div class="container">
-    <h1>🏆 2026世界盃 官方賽程時間與數據模擬器</h1>
-    <div class="subtitle">基準日期：2026年6月14日 ｜ 完整同步 PDF 官方 72 場賽程時間 ｜ 整合線上線下 12 大 Priority 焦點榜</div>
+    <h1>🏆 2026世界盃 32強模擬器</h1>
+    <div class="subtitle"> 整合 12 大 Priority 焦點榜</div>
     
     <div class="main-layout">
         <div class="sidebar">
@@ -58,7 +58,7 @@
             
             <div class="priority-item" onclick="quickSwitch('I')">
                 <span class="priority-rank">★ Top 1 (I組) 法國 vs 挪威</span>
-                <div style="font-size: 13px; margin-top:3px;">📅 06/24 03:00 姆巴佩 vs 哈蘭德！新雙驕史詩對決。</div>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/24 03:00 麥巴比 vs 夏蘭德！新雙驕史詩對決。</div>
                 <div class="priority-tags"><span class="badge-online">💻 觀看預估破 2.5 億</span><span class="badge-offline">🎫 現場一票難求</span></div>
             </div>
 
@@ -88,7 +88,7 @@
 
             <div class="priority-item" onclick="quickSwitch('C')">
                 <span class="priority-rank">★ Top 6 (C組) 巴西 vs 摩洛哥</span>
-                <div style="font-size: 13px; margin-top:3px;">📅 06/13 03:00 內馬爾傷停隱憂！桑巴技術對決北非雄獅。</div>
+                <div style="font-size: 13px; margin-top:3px;">📅 06/13 03:00 尼馬傷停隱憂！桑巴技術對決北非雄獅。</div>
                 <div class="priority-tags"><span class="badge-online">💻 爆冷懸念極高</span><span class="badge-offline">🎫 南美/北非熱潮</span></div>
             </div>
 
@@ -173,11 +173,11 @@ const tournamentData = {
         { d: "2026/06/20", t: "06:00", h: "卡達", a: "波黑", hs: 0, as: 3, att: 42000, isReal: false, note: "波黑高中鋒全面制空，卡達後防全面崩潰，波黑收穫大勝全力爭取外卡。" }
     ],
     C: [
-        { d: "2026/06/13", t: "03:00", h: "巴西", a: "摩洛哥", hs: 1, as: 1, att: 82000, isReal: false, note: "【🔥焦點大賽】巴西巨星內馬爾小腿拉傷無緣此場先發。面對摩洛哥布努組成的鋼鐵防線爆冷被逼平。" },
+        { d: "2026/06/13", t: "03:00", h: "巴西", a: "摩洛哥", hs: 1, as: 1, att: 82000, isReal: false, note: "【🔥焦點大賽】巴西巨星尼馬小腿拉傷無緣此場先發。面對摩洛哥布努組成的鋼鐵防線爆冷被逼平。" },
         { d: "2026/06/13", t: "10:00", h: "海地", a: "蘇格蘭", hs: 0, as: 2, att: 45000, isReal: false, note: "標準的英式硬朗打法，蘇格蘭牢牢掌握空中制空權，輕鬆擊敗海地。" },
         { d: "2026/06/17", t: "03:00", h: "巴西", a: "海地", hs: 5, as: 0, att: 69000, isReal: false, note: "賞心悅目的桑巴進攻秀，海地三線完全崩盤脫節，巴西多點開花狂收大勝。" },
         { d: "2026/06/17", t: "10:00", h: "摩洛哥", a: "蘇格蘭", hs: 2, as: 1, att: 58000, isReal: false, note: "摩洛哥展現精細的中場傳控腳法，切斷了蘇格蘭長傳線路，拿下三分。" },
-        { d: "2026/06/21", t: "03:00", h: "巴西", a: "蘇格蘭", hs: 3, as: 1, att: 76000, isReal: false, note: "內馬爾火線復出，維尼修斯與羅德里戈極速突破，反覆撕裂蘇格蘭笨重防線。" },
+        { d: "2026/06/21", t: "03:00", h: "巴西", a: "蘇格蘭", hs: 3, as: 1, att: 76000, isReal: false, note: "尼馬火線復出，維尼修斯與羅德里戈極速突破，反覆撕裂蘇格蘭笨重防線。" },
         { d: "2026/06/21", t: "03:00", h: "摩洛哥", a: "海地", hs: 4, as: 0, att: 41000, isReal: false, note: "實力完全不對等。阿什拉夫右路瘋狂肆虐，北非雄獅大勝大撈淨勝球直通32強。" }
     ],
     D: [
@@ -221,11 +221,11 @@ const tournamentData = {
         { d: "2026/06/23", t: "06:00", h: "維德角", a: "沙烏地阿拉伯", hs: 1, as: 1, att: 41000, isReal: false, note: "沙烏地大軍在北美高原水土不服，傳接球頻頻失誤，末戰無奈戰平雙雙出局。" }
     ],
     I: [
-        { d: "2026/06/16", t: "03:00", h: "法國", a: "塞內加爾", hs: 2, as: 1, att: 73000, isReal: false, note: "【鋒線核武】雖前鋒缺陣，但姆巴佩利用恐怖速度強行生吃非洲強硬防線拿下首勝。" },
-        { d: "2026/06/16", t: "10:00", h: "伊拉克", a: "挪威", hs: 0, as: 3, att: 44000, isReal: false, note: "「魔人」哈蘭德世界盃首秀！展現無解的禁區統治力，輕鬆上演梅開二度。" },
+        { d: "2026/06/16", t: "03:00", h: "法國", a: "塞內加爾", hs: 2, as: 1, att: 73000, isReal: false, note: "【鋒線核武】雖前鋒缺陣，但麥巴比利用恐怖速度強行生吃非洲強硬防線拿下首勝。" },
+        { d: "2026/06/16", t: "10:00", h: "伊拉克", a: "挪威", hs: 0, as: 3, att: 44000, isReal: false, note: "「魔人」夏蘭德世界盃首秀！展現無解的禁區統治力，輕鬆上演梅開二度。" },
         { d: "2026/06/20", t: "03:00", h: "法國", a: "伊拉克", hs: 4, as: 0, att: 56000, isReal: false, note: "法國實力全面碾壓，高盧雄雞前場攻擊群多點開花，輕鬆收下兩連勝。" },
-        { d: "2026/06/20", t: "10:00", h: "塞內加爾", a: "挪威", hs: 1, as: 1, att: 58500, isReal: false, note: "哈蘭德整場遭遇非洲防線瘋狂夾擊肉搏，挪威憑藉強硬對抗驚險握手言和。" },
-        { d: "2026/06/24", t: "03:00", h: "法國", a: "挪威", hs: 2, as: 2, att: 82000, isReal: false, note: "【🔥新雙驕世紀大戰】姆巴佩與哈蘭德頂流正面對轟！雙方大開大合，聯手戰成 2-2 史詩平局。" },
+        { d: "2026/06/20", t: "10:00", h: "塞內加爾", a: "挪威", hs: 1, as: 1, att: 58500, isReal: false, note: "夏蘭德整場遭遇非洲防線瘋狂夾擊肉搏，挪威憑藉強硬對抗驚險握手言和。" },
+        { d: "2026/06/24", t: "03:00", h: "法國", a: "挪威", hs: 2, as: 2, att: 82000, isReal: false, note: "【🔥新雙驕世紀大戰】麥巴比與夏蘭德頂流正面對轟！雙方大開大合，聯手戰成 2-2 史詩平局。" },
         { d: "2026/06/24", t: "03:00", h: "塞內加爾", a: "伊拉克", hs: 2, as: 0, att: 40000, isReal: false, note: "特里蘭加雄獅憑藉豐富的大賽經驗與肉搏強度，零封伊拉克，搶下外卡關鍵分。" }
     ],
     J: [
