@@ -59,7 +59,7 @@
 
 <div class="container">
     <h1>🏆 2026世界盃 48強分組賽動態線性加權預測系統</h1>
-    <div class="subtitle">Data-Driven Poisson Expectation Matrix Dashboard</div>
+    <div class="subtitle">Data-Driven Poisson Expectation Matrix Dashboard (Synced with Official Schedule)</div>
     
     <div class="formula-panel">
         <div class="formula-title">⚙️ 泊松分佈大數據矩陣 (Poisson Distribution Algorithm)</div>
@@ -67,45 +67,45 @@
         <ul class="formula-list">
             <li><strong>頂級強國 (+1.0)：</strong> 期望值升至 2.2 (西班牙、法國、德國、阿根廷、巴西、英格蘭、葡萄牙等)</li>
             <li><strong>東道主/主場 (+0.8)：</strong> 期望值升至 2.0 (美國、墨西哥、加拿大)</li>
-            <li><strong>實力落差球隊 (-0.8)：</strong> 期望值降至 0.4 (海地、庫拉索、維德角、巴拿馬、伊拉克等)</li>
+            <li><strong>實力落差球隊 (-0.8)：</strong> 期望值降至 0.4 (海地、庫拉索、佛得角、巴拿馬、伊拉克等)</li>
             <li><strong>動態新聞/傷停干擾：</strong> 即時修正得分效率 (如內馬爾、戴維斯缺陣自動扣除權重)</li>
         </ul>
     </div>
     
     <div class="control-panel">
         <select id="groupSelect" onchange="renderGroup()">
-            <option value="A">A組 (墨西哥、南非、南韓、捷克)</option>
-            <option value="B">B組 (加拿大、瑞士、卡達、波黑)</option>
+            <option value="A">A組 (墨西哥、南韓、捷克、南非)</option>
+            <option value="B">B組 (加拿大、卡達、瑞士、波赫)</option>
             <option value="C">C組 (巴西、摩洛哥、蘇格蘭、海地)</option>
-            <option value="D">D組 (美國、澳大利亞、巴拉圭、土耳其)</option>
-            <option value="E">E組 (德國、厄瓜多爾、科特迪瓦、庫拉索)</option>
-            <option value="F">F組 (荷蘭、日本、突尼斯、瑞典)</option>
+            <option value="D">D組 (美國、澳洲、土耳其、巴拉圭)</option>
+            <option value="E">E組 (德國、象牙海岸、厄瓜多、庫拉索)</option>
+            <option value="F">F組 (荷蘭、日本、瑞典、突尼西亞)</option>
             <option value="G">G組 (比利時、伊朗、埃及、紐西蘭)</option>
-            <option value="H">H組 (西班牙、烏拉圭、沙烏地、維德角)</option>
+            <option value="H">H組 (西班牙、烏拉圭、沙烏地阿拉伯、佛得角)</option>
             <option value="I">I組 (法國、塞內加爾、挪威、伊拉克)</option>
             <option value="J">J組 (阿根廷、奧地利、阿爾及利亞、約旦)</option>
-            <option value="K">K組 (葡萄牙、哥倫比亞、烏茲別克、剛果)</option>
-            <option value="L">L組 (英格蘭、克羅埃西亞、巴拿馬、迦納)</option>
+            <option value="K">K組 (葡萄牙、哥倫比亞、烏茲別克、剛果民主共和國)</option>
+            <option value="L">L組 (英格蘭、克羅埃西亞、加納、巴拿馬)</option>
         </select>
         <button class="btn-sync" onclick="syncLiveResults()">🔄 重新推演模型</button>
-        <span class="sync-status" id="syncStatus">系統狀態: 泊松引擎已載入 (A~L組就緒)</span>
+        <span class="sync-status" id="syncStatus">系統狀態: 泊松引擎已載入 (官方賽程同步完畢)</span>
     </div>
 
     <div class="main-layout">
         <div class="sidebar">
             <h3>📈 全球核心數據追蹤榜 (Top 12)</h3>
-            <div class="priority-item" onclick="quickSwitch('I')"><span class="priority-rank">★ Top 1 (I組) 法國 VS 挪威</span><div class="priority-time">⏰ 06/24 03:00</div><div class="priority-desc">頂級期望值碰撞。FIFA 一級核心賽事座席分配。</div></div>
-            <div class="priority-item" onclick="quickSwitch('J')"><span class="priority-rank">★ Top 2 (J組) 阿根廷 VS 奧地利</span><div class="priority-time">⏰ 06/20 06:00</div><div class="priority-desc">高壓逼搶模型動態測試，南美低失誤傳切流檢驗。</div></div>
-            <div class="priority-item" onclick="quickSwitch('A')"><span class="priority-rank">★ Top 3 (A組) 墨西哥 VS 南韓</span><div class="priority-time">⏰ 06/16 03:00</div><div class="priority-desc">東道主主場權重加成。阿茲特克高原氣候指標觀測。</div></div>
-            <div class="priority-item" onclick="quickSwitch('L')"><span class="priority-rank">★ Top 4 (L組) 英格蘭 VS 克羅埃西亞</span><div class="priority-time">⏰ 06/17 06:00</div><div class="priority-desc">歐陸高階數據博弈，中場核心結構體能衰減度量。</div></div>
-            <div class="priority-item" onclick="quickSwitch('F')"><span class="priority-rank">★ Top 5 (F組) 荷蘭 VS 日本</span><div class="priority-time">⏰ 06/14 06:00</div><div class="priority-desc">日本隊中場核心結構防禦系數修正與反擊轉化率觀測。</div></div>
-            <div class="priority-item" onclick="quickSwitch('C')"><span class="priority-rank">★ Top 6 (C組) 巴西 VS 摩洛哥</span><div class="priority-time">⏰ 06/13 03:00</div><div class="priority-desc">核心球員傷停權重下調，測試桑巴防線低期望值承壓。</div></div>
-            <div class="priority-item" onclick="quickSwitch('H')"><span class="priority-rank">★ Top 7 (H組) 西班牙 VS 烏拉圭</span><div class="priority-time">⏰ 06/23 06:00</div><div class="priority-desc">極致控球飽和度與南美強硬對抗流動態軌跡博弈。</div></div>
-            <div class="priority-item" onclick="quickSwitch('B')"><span class="priority-rank">★ Top 8 (B組) 加拿大 VS 瑞士</span><div class="priority-time">⏰ 06/20 06:00</div><div class="priority-desc">主辦國邊路極速衝擊對抗歐陸高紀律防守體系。</div></div>
-            <div class="priority-item" onclick="quickSwitch('K')"><span class="priority-rank">★ Top 9 (K組) 葡萄牙 VS 哥倫比亞</span><div class="priority-time">⏰ 06/25 03:00</div><div class="priority-desc">K組最高 Elo 身價碰撞戰，兩翼邊路極速反擊模型。</div></div>
-            <div class="priority-item" onclick="quickSwitch('E')"><span class="priority-rank">★ Top 10 (E組) 德國 VS 厄瓜多爾</span><div class="priority-time">⏰ 06/22 03:00</div><div class="priority-desc">歐陸核心中場前沿盤帶突破系數碰撞南美高壓閘口。</div></div>
-            <div class="priority-item" onclick="quickSwitch('G')"><span class="priority-rank">★ Top 11 (G組) 比利時 VS 埃及</span><div class="priority-time">⏰ 06/15 03:00</div><div class="priority-desc">高位包夾阻斷補給線，單點球星進球轉化率極限測試。</div></div>
-            <div class="priority-item" onclick="quickSwitch('D')"><span class="priority-rank">★ Top 12 (D組) 美國 VS 土耳其</span><div class="priority-time">⏰ 06/21 06:00</div><div class="priority-desc">地緣優勢加成與年輕鋒線群狀態加權回歸分析。</div></div>
+            <div class="priority-item" onclick="quickSwitch('I')"><span class="priority-rank">★ Top 1 (I組) 挪威 VS 法國</span><div class="priority-time">⏰ 06/27 03:00</div><div class="priority-desc">頂級期望值碰撞。FIFA 一級核心賽事座席分配。</div></div>
+            <div class="priority-item" onclick="quickSwitch('J')"><span class="priority-rank">★ Top 2 (J組) 阿根廷 VS 奧地利</span><div class="priority-time">⏰ 06/23 01:00</div><div class="priority-desc">高壓逼搶模型動態測試，南美低失誤傳切流檢驗。</div></div>
+            <div class="priority-item" onclick="quickSwitch('A')"><span class="priority-rank">★ Top 3 (A組) 墨西哥 VS 南韓</span><div class="priority-time">⏰ 06/19 09:00</div><div class="priority-desc">東道主主場權重加成。阿茲特克高原氣候指標觀測。</div></div>
+            <div class="priority-item" onclick="quickSwitch('L')"><span class="priority-rank">★ Top 4 (L組) 英格蘭 VS 克羅埃西亞</span><div class="priority-time">⏰ 06/18 04:00</div><div class="priority-desc">歐陸高階數據博弈，中場核心結構體能衰減度量。</div></div>
+            <div class="priority-item" onclick="quickSwitch('F')"><span class="priority-rank">★ Top 5 (F組) 荷蘭 VS 日本</span><div class="priority-time">⏰ 06/15 04:00</div><div class="priority-desc">日本隊中場核心結構防禦系數修正與反擊轉化率觀測。</div></div>
+            <div class="priority-item" onclick="quickSwitch('C')"><span class="priority-rank">★ Top 6 (C組) 巴西 VS 摩洛哥</span><div class="priority-time">⏰ 06/14 06:00</div><div class="priority-desc">核心球員傷停權重下調，測試桑巴防線低期望值承壓。</div></div>
+            <div class="priority-item" onclick="quickSwitch('H')"><span class="priority-rank">★ Top 7 (H組) 烏拉圭 VS 西班牙</span><div class="priority-time">⏰ 06/27 08:00</div><div class="priority-desc">極致控球飽和度與南美強硬對抗流動態軌跡博弈。</div></div>
+            <div class="priority-item" onclick="quickSwitch('B')"><span class="priority-rank">★ Top 8 (B組) 瑞士 VS 加拿大</span><div class="priority-time">⏰ 06/25 03:00</div><div class="priority-desc">主辦國邊路極速衝擊對抗歐陸高紀律防守體系。</div></div>
+            <div class="priority-item" onclick="quickSwitch('K')"><span class="priority-rank">★ Top 9 (K組) 哥倫比亞 VS 葡萄牙</span><div class="priority-time">⏰ 06/28 07:30</div><div class="priority-desc">K組最高 Elo 身價碰撞戰，兩翼邊路極速反擊模型。</div></div>
+            <div class="priority-item" onclick="quickSwitch('E')"><span class="priority-rank">★ Top 10 (E組) 厄瓜多 VS 德國</span><div class="priority-time">⏰ 06/26 04:00</div><div class="priority-desc">歐陸核心中場前沿盤帶突破系數碰撞南美高壓閘口。</div></div>
+            <div class="priority-item" onclick="quickSwitch('G')"><span class="priority-rank">★ Top 11 (G組) 比利時 VS 埃及</span><div class="priority-time">⏰ 06/16 03:00</div><div class="priority-desc">高位包夾阻斷補給線，單點球星進球轉化率極限測試。</div></div>
+            <div class="priority-item" onclick="quickSwitch('D')"><span class="priority-rank">★ Top 12 (D組) 土耳其 VS 美國</span><div class="priority-time">⏰ 06/26 10:00</div><div class="priority-desc">地緣優勢加成與年輕鋒線群狀態加權回歸分析。</div></div>
         </div>
 
         <div class="content-area">
@@ -117,7 +117,7 @@
 
 <script>
 // ==========================================
-// 1. 模型大腦：球隊基礎參數庫與動態權重
+// 1. 模型大腦：球隊基礎參數庫與動態權重 (已校正譯名)
 // ==========================================
 const teamStats = {
     // 頂級強國 (Base: 2.2)
@@ -138,11 +138,9 @@ const teamStats = {
 
     // 弱勢球隊 (Base: 0.4)
     "海地": { base: 0.4, newsMod: 0 }, "庫拉索": { base: 0.4, newsMod: 0 },
-    "佛得角": { base: 0.4, newsMod: 0 }, "維德角": { base: 0.4, newsMod: 0 },
-    "約旦": { base: 0.4, newsMod: 0 }, "剛果": { base: 0.4, newsMod: 0 },
-    "伊拉克": { base: 0.4, newsMod: 0 }, "巴拿馬": { base: 0.4, newsMod: 0 },
-    "紐西蘭": { base: 0.4, newsMod: 0 }
-    // 未列出球隊預設為 Base 1.2
+    "佛得角": { base: 0.4, newsMod: 0 }, "約旦": { base: 0.4, newsMod: 0 },
+    "剛果民主共和國": { base: 0.4, newsMod: 0 }, "伊拉克": { base: 0.4, newsMod: 0 },
+    "巴拿馬": { base: 0.4, newsMod: 0 }, "紐西蘭": { base: 0.4, newsMod: 0 }
 };
 
 // ==========================================
@@ -185,104 +183,104 @@ function predictMatch(homeTeam, awayTeam) {
 }
 
 // ==========================================
-// 3. 賽程與結果資料庫 (A至L組完整數據)
+// 3. 賽程與結果資料庫 (A至L組完整數據 - 已對齊官方時刻表)
 // ==========================================
 let tournamentData = {
     A: [
         { id: "A1", d: "2026/06/12", t: "03:00", h: "墨西哥", a: "南非", hs: 2, as: 0, att: 87523, isReal: true, prob: "實際完賽", note: "【實際賽果】東道主高原優勢完全觸發，墨西哥 2:0 獲勝取得足額積分。" },
         { id: "A2", d: "2026/06/12", t: "10:00", h: "南韓", a: "捷克", hs: 2, as: 1, att: 48000, isReal: true, prob: "實際完賽", note: "【實際賽果】南韓發揮極速轉換效率，2-1 險勝，成功壓制捷克笨重防線。" },
-        { id: "A3", d: "2026/06/16", t: "03:00", h: "墨西哥", a: "南韓", isReal: false, att: 82500, note: "東道主主場優勢持續覆蓋，大數據傾向主隊勝出。" },
-        { id: "A4", d: "2026/06/16", t: "10:00", h: "南非", a: "捷克", isReal: false, att: 41200, note: "雙方基本盤均等，捷克高空球制空權與歐陸戰術權重略高。" },
-        { id: "A5", d: "2026/06/20", t: "03:00", h: "墨西哥", a: "捷克", isReal: false, att: 84000, note: "地理高原環境對歐洲球員下半場體能損耗加權顯著。" },
-        { id: "A6", d: "2026/06/20", t: "03:00", h: "南韓", a: "南非", isReal: false, att: 46000, note: "中場控局能力優勢清晰，大數據推演南韓全取三分概率高。" }
+        { id: "A3", d: "2026/06/19", t: "00:00", h: "捷克", a: "南非", isReal: false, att: 41200, note: "雙方基本盤均等，捷克高空球制空權與歐陸戰術權重略高。" },
+        { id: "A4", d: "2026/06/19", t: "09:00", h: "墨西哥", a: "南韓", isReal: false, att: 82500, note: "東道主主場優勢持續覆蓋，大數據傾向主隊勝出。" },
+        { id: "A5", d: "2026/06/25", t: "09:00", h: "捷克", a: "墨西哥", isReal: false, att: 84000, note: "地理高原環境對歐洲球員下半場體能損耗加權顯著。" },
+        { id: "A6", d: "2026/06/25", t: "09:00", h: "南非", a: "南韓", isReal: false, att: 46000, note: "中場控局能力優勢清晰，大數據推演南韓全取三分概率高。" }
     ],
     B: [
-        { id: "B1", d: "2026/06/12", t: "06:00", h: "加拿大", a: "波黑", hs: 1, as: 1, att: 45000, isReal: true, prob: "實際完賽", note: "【實際賽果】加拿大核心Davies缺陣引發期望值下修修正(-0.5)，雙方 1-1 言和。" },
-        { id: "B2", d: "2026/06/12", t: "12:00", h: "卡達", a: "瑞士", hs: 1, as: 1, att: 44000, isReal: true, prob: "實際完賽", note: "【實際賽果】戰術干擾修正。卡達展現亞洲杯冠軍極強防守韌性，1-1 頑強逼平瑞士。" },
-        { id: "B3", d: "2026/06/16", t: "06:00", h: "加拿大", a: "卡達", isReal: false, att: 58000, note: "東道主優勢對決，加權將有所傾斜。" },
-        { id: "B4", d: "2026/06/16", t: "12:00", h: "波黑", a: "瑞士", isReal: false, att: 49500, note: "瑞士歐國聯一級聯賽正賽積分權重在數據庫中遠超波黑。" },
-        { id: "B5", d: "2026/06/20", t: "06:00", h: "加拿大", a: "瑞士", isReal: false, att: 61000, note: "東道主對決歐洲中堅力量，核心期望值重合度高，傾向高比分平局。" },
-        { id: "B6", d: "2026/06/20", t: "06:00", h: "卡達", a: "波黑", isReal: false, att: 42000, note: "卡達戰術重心向防守傾斜，基本數據對等，傾向戰平。" }
+        { id: "B1", d: "2026/06/13", t: "03:00", h: "加拿大", a: "波赫", hs: 1, as: 1, att: 45000, isReal: true, prob: "實際完賽", note: "【實際賽果】加拿大核心Davies缺陣引發期望值下修修正(-0.5)，雙方 1-1 言和。" },
+        { id: "B2", d: "2026/06/14", t: "03:00", h: "卡達", a: "瑞士", hs: 1, as: 1, att: 44000, isReal: true, prob: "實際完賽", note: "【實際賽果】戰術干擾修正。卡達展現亞洲杯冠軍極強防守韌性，1-1 頑強逼平瑞士。" },
+        { id: "B3", d: "2026/06/19", t: "03:00", h: "瑞士", a: "波赫", isReal: false, att: 49500, note: "瑞士歐國聯一級聯賽正賽積分權重在數據庫中遠超波赫。" },
+        { id: "B4", d: "2026/06/19", t: "06:00", h: "加拿大", a: "卡達", isReal: false, att: 58000, note: "東道主優勢對決，加權將有所傾斜。" },
+        { id: "B5", d: "2026/06/25", t: "03:00", h: "瑞士", a: "加拿大", isReal: false, att: 61000, note: "東道主對決歐洲中堅力量，核心期望值重合度高，傾向高比分平局。" },
+        { id: "B6", d: "2026/06/25", t: "03:00", h: "波赫", a: "卡達", isReal: false, att: 42000, note: "卡達戰術重心向防守傾斜，基本數據對等，傾向戰平。" }
     ],
     C: [
-        { id: "C1", d: "2026/06/13", t: "03:00", h: "巴西", a: "摩洛哥", hs: 1, as: 1, att: 82000, isReal: true, prob: "實際完賽", note: "【實際賽果】傷病變數干擾。內馬爾缺陣引發進攻飽和度下調，摩洛哥鋼鐵防線成功守下 1-1。" },
-        { id: "C2", d: "2026/06/13", t: "10:00", h: "海地", a: "蘇格蘭", hs: 0, as: 1, att: 45000, isReal: true, prob: "實際完賽", note: "【實際賽果】趨勢精確解讀。成功命中海地遭零封之核心走向。蘇格蘭全場主導進攻期望值，1球小勝。" },
-        { id: "C3", d: "2026/06/17", t: "03:00", h: "巴西", a: "海地", isReal: false, att: 69000, note: "巴西頂級豪強(2.2)對決海地極端弱隊修正(0.4)。數據落差巨大，零封格局。" },
-        { id: "C4", d: "2026/06/17", t: "10:00", h: "摩洛哥", a: "蘇格蘭", isReal: false, att: 58000, note: "北非強權世界排名與核心骨幹身價加權領先蘇格蘭一個檔次。" },
-        { id: "C5", d: "2026/06/21", t: "03:00", h: "巴西", a: "蘇格蘭", isReal: false, att: 76000, note: "硬實力利差高達 1.0，大數據演算傾向南美傳統豪強兩球完勝。" },
-        { id: "C6", d: "2026/06/21", t: "03:00", h: "摩洛哥", a: "海地", isReal: false, att: 41000, note: "實力維度非對等，摩洛哥中場傳導矩陣能輕鬆撕裂海地低位防線。" }
+        { id: "C1", d: "2026/06/14", t: "06:00", h: "巴西", a: "摩洛哥", isReal: false, att: 82000, note: "核心球員傷病變數干擾。內馬爾缺陣引發進攻飽和度下調，考驗桑巴軍團破防能力。" },
+        { id: "C2", d: "2026/06/14", t: "09:00", h: "海地", a: "蘇格蘭", isReal: false, att: 45000, note: "準英式硬朗數據打法，大數據推演蘇格蘭高機率掌握空中制空權並完勝。" },
+        { id: "C3", d: "2026/06/20", t: "06:00", h: "蘇格蘭", a: "摩洛哥", isReal: false, att: 58000, note: "北非強權世界排名與核心骨幹身價加權領先蘇格蘭一個檔次。" },
+        { id: "C4", d: "2026/06/20", t: "08:30", h: "巴西", a: "海地", isReal: false, att: 69000, note: "巴西頂級豪強(2.2)對決海地極端弱隊修正(0.4)。數據落差巨大，零封格局。" },
+        { id: "C5", d: "2026/06/25", t: "06:00", h: "蘇格蘭", a: "巴西", isReal: false, att: 76000, note: "硬實力利差高達 1.0，大數據演算傾向南美傳統豪強兩球完勝。" },
+        { id: "C6", d: "2026/06/25", t: "06:00", h: "摩洛哥", a: "海地", isReal: false, att: 41000, note: "實力維度非對等，摩洛哥中場傳導矩陣能輕鬆撕裂海地低位防線。" }
     ],
     D: [
-        { id: "D1", d: "2026/06/13", t: "06:00", h: "美國", a: "巴拉圭", hs: 4, as: 1, att: 68000, isReal: true, prob: "實際完賽", note: "【實際賽果】東道主主場能量全面爆發，大數據完美命中主隊 4-1 狂勝戰果。" },
-        { id: "D2", d: "2026/06/13", t: "12:00", h: "澳大利亞", a: "土耳其", hs: 2, as: 0, att: 51000, isReal: true, prob: "實際完賽", note: "【實際賽果】戰術權重校正。澳洲成功觸發高空制空權與身體對抗優勢，2-0 完勝土耳其技術流。" },
-        { id: "D3", d: "2026/06/17", t: "06:00", h: "美國", a: "澳大利亞", isReal: false, att: 74000, note: "動態引入澳洲最新戰術對抗系數，預測美國東道主主場優勢下艱難小勝。" },
-        { id: "D4", d: "2026/06/17", t: "12:00", h: "巴拉圭", a: "土耳其", isReal: false, att: 49000, note: "土耳其受首輪挫敗影響，核心參數向下微調，推演偏向實力均衡平局。" },
-        { id: "D5", d: "2026/06/21", t: "06:00", h: "美國", a: "土耳其", isReal: false, att: 79000, note: "地主優勢加成與中前場球員高轉化率，預期掌握比賽主導權。" },
-        { id: "D6", d: "2026/06/21", t: "06:00", h: "巴拉圭", a: "澳大利亞", isReal: false, att: 45500, note: "澳洲身體對抗體系與定位球加權優勢在分組賽末輪更具拿分效率。" }
+        { id: "D1", d: "2026/06/13", t: "09:00", h: "美國", a: "巴拉圭", hs: 4, as: 1, att: 68000, isReal: true, prob: "實際完賽", note: "【實際賽果】東道主主場能量全面爆發，大數據完美命中主隊 4-1 狂勝戰果。" },
+        { id: "D2", d: "2026/06/14", t: "12:00", h: "澳洲", a: "土耳其", hs: 2, as: 0, att: 51000, isReal: true, prob: "實際完賽", note: "【實際賽果】戰術權重校正。澳洲成功觸發高空制空權與身體對抗優勢，2-0 完勝土耳其技術流。" },
+        { id: "D3", d: "2026/06/20", t: "03:00", h: "美國", a: "澳洲", isReal: false, att: 74000, note: "動態引入澳洲最新戰術對抗系數，預測美國東道主主場優勢下艱難小勝。" },
+        { id: "D4", d: "2026/06/20", t: "11:00", h: "土耳其", a: "巴拉圭", isReal: false, att: 49000, note: "土耳其受首輪挫敗影響，核心參數向下微調，推演偏向實力均衡平局。" },
+        { id: "D5", d: "2026/06/26", t: "10:00", h: "土耳其", a: "美國", isReal: false, att: 79000, note: "地主優勢加成與中前場球員高轉化率，預期掌握比賽主導權。" },
+        { id: "D6", d: "2026/06/26", t: "10:00", h: "巴拉圭", a: "澳洲", isReal: false, att: 45500, note: "澳洲身體對抗體系與定位球加權優勢在分組賽末輪更具拿分效率。" }
     ],
     E: [
-        { id: "E1", d: "2026/06/14", t: "03:00", h: "德國", a: "庫拉索", isReal: false, att: 55000, note: "德國一線核心陣容(2.2)對決庫拉索極端弱隊修正(0.4)。數值降維打擊。" },
-        { id: "E2", d: "2026/06/14", t: "10:00", h: "科特迪瓦", a: "厄瓜多爾", isReal: false, att: 52000, note: "非洲一線身價對決南美硬朗派，攔截系數高度重合，傾向肉搏戰平局。" },
-        { id: "E3", d: "2026/06/18", t: "03:00", h: "德國", a: "科特迪瓦", isReal: false, att: 64000, note: "德國中場控制力飽和，能有效阻斷非洲大象的反擊補給軸心。" },
-        { id: "E4", d: "2026/06/18", t: "10:00", h: "庫拉索", a: "厄瓜多爾", isReal: false, att: 41000, note: "庫拉索防線橫向移動系數低，難以抵抗南美球隊的立體進攻。" },
-        { id: "E5", d: "2026/06/22", t: "03:00", h: "德國", a: "厄瓜多爾", isReal: false, att: 68000, note: "強國底蘊矩陣生效，德國高階 Elo 評分保證小組全勝。" },
-        { id: "E6", d: "2026/06/22", t: "03:00", h: "科特迪瓦", a: "庫拉索", isReal: false, att: 38000, note: "科特迪瓦爆發力與單兵對抗實力碾壓弱隊。" }
+        { id: "E1", d: "2026/06/15", t: "01:00", h: "德國", a: "庫拉索", isReal: false, att: 55000, note: "德國一線核心陣容(2.2)對決庫拉索極端弱隊修正(0.4)。數值降維打擊。" },
+        { id: "E2", d: "2026/06/15", t: "07:00", h: "象牙海岸", a: "厄瓜多", isReal: false, att: 52000, note: "非洲一線身價對決南美硬朗派，攔截系數高度重合，傾向肉搏戰平局。" },
+        { id: "E3", d: "2026/06/21", t: "04:00", h: "德國", a: "象牙海岸", isReal: false, att: 64000, note: "德國中場控制力飽和，能有效阻斷非洲大象的反擊補給軸心。" },
+        { id: "E4", d: "2026/06/21", t: "08:00", h: "厄瓜多", a: "庫拉索", isReal: false, att: 41000, note: "庫拉索防線橫向移動系數低，難以抵抗南美球隊的立體進攻。" },
+        { id: "E5", d: "2026/06/26", t: "04:00", h: "庫拉索", a: "象牙海岸", isReal: false, att: 38000, note: "象牙海岸爆發力與單兵對抗實力碾壓弱隊。" },
+        { id: "E6", d: "2026/06/26", t: "04:00", h: "厄瓜多", a: "德國", isReal: false, att: 68000, note: "強國底蘊矩陣生效，德國高階 Elo 評分保證小組全勝。" }
     ],
     F: [
-        { id: "F1", d: "2026/06/14", t: "06:00", h: "荷蘭", a: "日本", isReal: false, att: 75000, note: "荷蘭強隊加成(2.2)對決日本隊，期望值優勢明顯。" },
-        { id: "F2", d: "2026/06/14", t: "12:00", h: "突尼斯", a: "瑞典", isReal: false, att: 46000, note: "瑞典重返歐陸頂尖防空軌道，數據期望值略勝北非隊伍。" },
-        { id: "F3", d: "2026/06/18", t: "06:00", h: "荷蘭", a: "瑞典", isReal: false, att: 67000, note: "橙衣軍團整體陣容厚度與核心防線評分在分組賽具備高轉化率。" },
-        { id: "F4", d: "2026/06/18", t: "12:00", h: "日本", a: "突尼斯", isReal: false, att: 53000, note: "日本地面傳切體系高度成熟，邊路突破系數高於突尼斯防線。" },
-        { id: "F5", d: "2026/06/22", t: "06:00", h: "荷蘭", a: "突尼斯", isReal: false, att: 58000, note: "硬實力階層差，大數據顯示荷蘭掌控全場控球率。" },
-        { id: "F6", d: "2026/06/22", t: "06:00", h: "日本", a: "瑞典", isReal: false, att: 62000, note: "小快靈風格與北歐海盜高空吊鏡相互剋制，大機率戰平。" }
+        { id: "F1", d: "2026/06/15", t: "04:00", h: "荷蘭", a: "日本", isReal: false, att: 75000, note: "荷蘭強隊加成(2.2)對決日本隊，期望值優勢明顯。" },
+        { id: "F2", d: "2026/06/15", t: "10:00", h: "瑞典", a: "突尼西亞", isReal: false, att: 46000, note: "瑞典重返歐陸頂尖防空軌道，數據期望值略勝北非隊伍。" },
+        { id: "F3", d: "2026/06/21", t: "01:00", h: "荷蘭", a: "瑞典", isReal: false, att: 67000, note: "橙衣軍團整體陣容厚度與核心防線評分在分組賽具備高轉化率。" },
+        { id: "F4", d: "2026/06/21", t: "12:00", h: "突尼西亞", a: "日本", isReal: false, att: 53000, note: "日本地面傳切體系高度成熟，邊路突破系數高於突尼西亞防線。" },
+        { id: "F5", d: "2026/06/26", t: "07:00", h: "日本", a: "瑞典", isReal: false, att: 62000, note: "小快靈風格與北歐海盜高空吊鏡相互剋制，大機率戰平。" },
+        { id: "F6", d: "2026/06/26", t: "07:00", h: "突尼西亞", a: "荷蘭", isReal: false, att: 58000, note: "硬實力階層差，大數據顯示荷蘭掌控全場控球率。" }
     ],
     G: [
-        { id: "G1", d: "2026/06/15", t: "03:00", h: "比利時", a: "埃及", isReal: false, att: 62000, note: "比利時歐洲一線結構，陣容深度與大賽經驗優勢清晰。" },
-        { id: "G2", d: "2026/06/15", t: "10:00", h: "伊朗", a: "紐西蘭", isReal: false, att: 41000, note: "紐西蘭(0.4)遇上防守嚴密的伊朗，進攻期望值極低。" },
-        { id: "G3", d: "2026/06/19", t: "03:00", h: "比利時", a: "伊朗", isReal: false, att: 54000, note: "歐洲紅魔中場創造力指標飽和，伊朗低位大巴極難全場封鎖。" },
-        { id: "G4", d: "2026/06/19", t: "10:00", h: "埃及", a: "紐西蘭", isReal: false, att: 45000, note: "薩拉赫單點突擊期望值加權，紐西蘭防線轉身慢弱點明確。" },
-        { id: "G5", d: "2026/06/23", t: "03:00", h: "比利時", a: "紐西蘭", isReal: false, att: 51000, note: "極端實力利差，大數據傾向完勝格局。" },
-        { id: "G6", d: "2026/06/23", t: "03:00", h: "埃及", a: "伊朗", isReal: false, att: 56000, note: "分組出線生死大戰，兩隊核心數據重合，預期趨向戰略防守平局。" }
+        { id: "G1", d: "2026/06/16", t: "03:00", h: "比利時", a: "埃及", isReal: false, att: 62000, note: "比利時歐洲一線結構，陣容深度與大賽經驗優勢清晰。" },
+        { id: "G2", d: "2026/06/16", t: "09:00", h: "伊朗", a: "紐西蘭", isReal: false, att: 41000, note: "紐西蘭(0.4)遇上防守嚴密的伊朗，進攻期望值極低。" },
+        { id: "G3", d: "2026/06/22", t: "03:00", h: "比利時", a: "伊朗", isReal: false, att: 54000, note: "歐洲紅魔中場創造力指標飽和，伊朗低位大巴極難全場封鎖。" },
+        { id: "G4", d: "2026/06/22", t: "09:00", h: "紐西蘭", a: "埃及", isReal: false, att: 45000, note: "薩拉赫單點突擊期望值加權，紐西蘭防線轉身慢弱點明確。" },
+        { id: "G5", d: "2026/06/27", t: "11:00", h: "埃及", a: "伊朗", isReal: false, att: 56000, note: "分組出線生死大戰，兩隊核心數據重合，預期趨向戰略防守平局。" },
+        { id: "G6", d: "2026/06/27", t: "11:00", h: "紐西蘭", a: "比利時", isReal: false, att: 51000, note: "極端實力利差，大數據傾向完勝格局。" }
     ],
     H: [
-        { id: "H1", d: "2026/06/15", t: "06:00", h: "西班牙", a: "維德角", isReal: false, att: 52000, note: "西班牙頂級強國傳控矩陣(2.2)對決弱隊修正(0.4)。" },
-        { id: "H2", d: "2026/06/15", t: "12:00", h: "沙特阿拉伯", a: "烏拉圭", isReal: false, att: 52000, note: "烏拉圭硬朗派防線系數極高，中前場突擊身價加權顯著。" },
-        { id: "H3", d: "2026/06/19", t: "06:00", h: "西班牙", a: "沙特阿拉伯", isReal: false, att: 60500, note: "西班牙窒息式傳球成功率高，完全閹割沙烏地反擊點。" },
-        { id: "H4", d: "2026/06/19", t: "12:00", h: "維德角", a: "烏拉圭", isReal: false, att: 45000, note: "維德角防線缺口大，無法阻擋南美強權的立體空轟。" },
-        { id: "H5", d: "2026/06/23", t: "06:00", h: "西班牙", a: "烏拉圭", isReal: false, att: 74000, note: "極致高控球飽和度微幅領先烏拉圭對抗流。" },
-        { id: "H6", d: "2026/06/23", t: "06:00", h: "維德角", a: "沙特阿拉伯", isReal: false, att: 41000, note: "沙烏地整體正賽積分與國際大賽經驗底蘊更優。" }
+        { id: "H1", d: "2026/06/16", t: "00:00", h: "西班牙", a: "佛得角", isReal: false, att: 52000, note: "西班牙頂級強國傳控矩陣(2.2)對決弱隊修正(0.4)。" },
+        { id: "H2", d: "2026/06/16", t: "06:00", h: "沙烏地阿拉伯", a: "烏拉圭", isReal: false, att: 52000, note: "烏拉圭硬朗派防線系數極高，中前場突擊身價加權顯著。" },
+        { id: "H3", d: "2026/06/22", t: "00:00", h: "西班牙", a: "沙烏地阿拉伯", isReal: false, att: 60500, note: "西班牙窒息式傳球成功率高，完全閹割沙烏地反擊點。" },
+        { id: "H4", d: "2026/06/22", t: "06:00", h: "烏拉圭", a: "佛得角", isReal: false, att: 45000, note: "佛得角防線缺口大，無法阻擋南美強權的立體空轟。" },
+        { id: "H5", d: "2026/06/27", t: "08:00", h: "佛得角", a: "沙烏地阿拉伯", isReal: false, att: 41000, note: "沙烏地整體正賽積分與國際大賽經驗底蘊更優。" },
+        { id: "H6", d: "2026/06/27", t: "08:00", h: "烏拉圭", a: "西班牙", isReal: false, att: 74000, note: "極致高控球飽和度微幅領先烏拉圭對抗流。" }
     ],
     I: [
-        { id: "I1", d: "2026/06/16", t: "03:00", h: "法國", a: "塞內加爾", isReal: false, att: 73000, note: "法國頂級強國加成(2.2)對決非洲頂尖特蘭加雄獅(1.2)。" },
-        { id: "I2", d: "2026/06/16", t: "10:00", h: "伊拉克", a: "挪威", isReal: false, att: 44000, note: "伊拉克弱隊修正(0.4)難以限制夏蘭德禁區期望值。" },
-        { id: "I3", d: "2026/06/20", t: "03:00", h: "法國", a: "伊拉克", isReal: false, att: 56000, note: "極端實力差，高盧雄雞前場攻擊群飽和破門。" },
-        { id: "I4", d: "2026/06/20", t: "10:00", h: "塞內加爾", a: "挪威", isReal: false, att: 58500, note: "塞內加爾中後場身體強度能與挪威中鋒互克，高機率戰平。" },
-        { id: "I5", d: "2026/06/24", t: "03:00", h: "法國", a: "挪威", isReal: false, att: 82000, note: "高階對決。法國憑藉更深厚的板凳厚度掌控末輪主動權。" },
-        { id: "I6", d: "2026/06/24", t: "03:00", h: "塞內加爾", a: "伊拉克", isReal: false, att: 40000, note: "塞內加爾硬實力碾壓，穩定奪取三分。" }
+        { id: "I1", d: "2026/06/17", t: "03:00", h: "法國", a: "塞內加爾", isReal: false, att: 73000, note: "法國頂級強國加成(2.2)對決非洲頂尖特蘭加雄獅(1.2)。" },
+        { id: "I2", d: "2026/06/17", t: "06:00", h: "伊拉克", a: "挪威", isReal: false, att: 44000, note: "伊拉克弱隊修正(0.4)難以限制挪威禁區期望值。" },
+        { id: "I3", d: "2026/06/23", t: "05:00", h: "法國", a: "伊拉克", isReal: false, att: 56000, note: "極端實力差，高盧雄雞前場攻擊群飽和破門。" },
+        { id: "I4", d: "2026/06/23", t: "08:00", h: "挪威", a: "塞內加爾", isReal: false, att: 58500, note: "塞內加爾中後場身體強度能與挪威中鋒互克，高機率戰平。" },
+        { id: "I5", d: "2026/06/27", t: "03:00", h: "挪威", a: "法國", isReal: false, att: 82000, note: "高階對決。法國憑藉更深厚的板凳厚度掌控末輪主動權。" },
+        { id: "I6", d: "2026/06/27", t: "03:00", h: "塞內加爾", a: "伊拉克", isReal: false, att: 40000, note: "塞內加爾硬實力碾壓，穩定奪取三分。" }
     ],
     J: [
-        { id: "J1", d: "2026/06/16", t: "06:00", h: "阿根廷", a: "阿爾及利亞", isReal: false, att: 74000, note: "衛冕冠軍頂級強國權重(2.2)在傳切失誤率控制上居於優勢。" },
-        { id: "J2", d: "2026/06/16", t: "12:00", h: "奧地利", a: "約旦", isReal: false, att: 46000, note: "奧地利德式高強度反搶大幅閹割約旦(0.4)中場出球線。" },
-        { id: "J3", d: "2026/06/20", t: "06:00", h: "阿根廷", a: "奧地利", isReal: false, att: 81000, note: "藍白軍團流暢的傳導與空間控局能有效化解奧地利的瘋狂逼搶。" },
-        { id: "J4", d: "2026/06/20", t: "12:00", h: "阿爾及利亞", a: "約旦", isReal: false, att: 42000, note: "北非狐狸腳下控制力與旅歐球員大賽數據領先。" },
-        { id: "J5", d: "2026/06/24", t: "06:00", h: "阿根廷", a: "約旦", isReal: false, att: 78000, note: "極端利差，實力鴻溝明確。" },
-        { id: "J6", d: "2026/06/24", t: "06:00", h: "阿爾及利亞", a: "奧地利", isReal: false, att: 53500, note: "奧地利德甲中後衛骨幹在整體組織防守度上較高。" }
+        { id: "J1", d: "2026/06/17", t: "09:00", h: "阿根廷", a: "阿爾及利亞", isReal: false, att: 74000, note: "衛冕冠軍頂級強國權重(2.2)在傳切失誤率控制上居於優勢。" },
+        { id: "J2", d: "2026/06/17", t: "12:00", h: "奧地利", a: "約旦", isReal: false, att: 46000, note: "奧地利德式高強度反搶大幅閹割約旦(0.4)中場出球線。" },
+        { id: "J3", d: "2026/06/23", t: "01:00", h: "阿根廷", a: "奧地利", isReal: false, att: 81000, note: "藍白軍團流暢的傳導與空間控局能有效化解奧地利的瘋狂逼搶。" },
+        { id: "J4", d: "2026/06/23", t: "11:00", h: "約旦", a: "阿爾及利亞", isReal: false, att: 42000, note: "北非狐狸腳下控制力與旅歐球員大賽數據領先。" },
+        { id: "J5", d: "2026/06/28", t: "10:00", h: "阿爾及利亞", a: "奧地利", isReal: false, att: 53500, note: "奧地利德甲中後衛骨幹在整體組織防守度上較高。" },
+        { id: "J6", d: "2026/06/28", t: "10:00", h: "約旦", a: "阿根廷", isReal: false, att: 78000, note: "極端利差，實力鴻溝明確。" }
     ],
     K: [
-        { id: "K1", d: "2026/06/17", t: "03:00", h: "葡萄牙", a: "剛果", isReal: false, att: 53000, note: "葡萄牙陣容技術加成完全掌控中場進攻主導權。" },
-        { id: "K2", d: "2026/06/17", t: "10:00", h: "烏茲別克", a: "哥倫比亞", isReal: false, att: 55000, note: "中亞狼基準難以抵擋南美頂尖哥倫比亞極速邊路。" },
-        { id: "K3", d: "2026/06/21", t: "03:00", h: "葡萄牙", a: "烏茲別克", isReal: false, att: 59000, note: "實力檔次利差，葡萄牙高階 Elo 矩陣穩定勝出。" },
-        { id: "K4", d: "2026/06/21", t: "10:00", h: "剛果", a: "哥倫比亞", isReal: false, att: 50000, note: "剛果防線轉身慢，南美進攻線多點切入優勢顯著。" },
-        { id: "K5", d: "2026/06/25", t: "03:00", h: "葡萄牙", a: "哥倫比亞", isReal: false, att: 71000, note: "K組雙強拉鋸戰。數值極度接近，傾向均勢平局。" },
-        { id: "K6", d: "2026/06/25", t: "03:00", h: "烏茲別克", a: "剛果", isReal: false, att: 39500, note: "烏茲別克戰術紀律在防守覆蓋面上高於剛果。" }
+        { id: "K1", d: "2026/06/18", t: "01:00", h: "葡萄牙", a: "剛果民主共和國", isReal: false, att: 53000, note: "葡萄牙陣容技術加成完全掌控中場進攻主導權。" },
+        { id: "K2", d: "2026/06/18", t: "10:00", h: "烏茲別克", a: "哥倫比亞", isReal: false, att: 55000, note: "中亞狼基準難以抵擋南美頂尖哥倫比亞極速邊路。" },
+        { id: "K3", d: "2026/06/24", t: "01:00", h: "葡萄牙", a: "烏茲別克", isReal: false, att: 59000, note: "實力檔次利差，葡萄牙高階 Elo 矩陣穩定勝出。" },
+        { id: "K4", d: "2026/06/24", t: "10:00", h: "哥倫比亞", a: "剛果民主共和國", isReal: false, att: 50000, note: "剛果防線轉身慢，南美進攻線多點切入優勢顯著。" },
+        { id: "K5", d: "2026/06/28", t: "07:30", h: "哥倫比亞", a: "葡萄牙", isReal: false, att: 71000, note: "K組雙強拉鋸戰。數值極度接近，傾向均勢平局。" },
+        { id: "K6", d: "2026/06/28", t: "07:30", h: "剛果民主共和國", a: "烏茲別克", isReal: false, att: 39500, note: "烏茲別克戰術紀律在防守覆蓋面上高於剛果。" }
     ],
     L: [
-        { id: "L1", d: "2026/06/17", t: "06:00", h: "英格蘭", a: "克羅地亞", isReal: false, att: 84000, note: "英格蘭頂級強國加成對決格子軍團大賽經驗，鋒線轉化率較高。" },
-        { id: "L2", d: "2026/06/17", t: "12:00", h: "加納", a: "巴拿馬", isReal: false, att: 44000, note: "巴拿馬(0.4)數值處劣勢，加納運動能力主導。" },
-        { id: "L3", d: "2026/06/21", t: "06:00", h: "英格蘭", a: "加納", isReal: false, att: 75000, note: "硬實力利差明確，三獅軍團高空球與對抗加成顯著。" },
-        { id: "L4", d: "2026/06/21", t: "12:00", h: "克羅地亞", a: "巴拿馬", isReal: false, att: 51000, note: "格子軍團大師級傳控節奏能有效掐斷巴拿馬反擊點。" },
-        { id: "L5", d: "2026/06/25", t: "06:00", h: "英格蘭", a: "巴拿馬", isReal: false, att: 72000, note: "英格蘭核心攻擊群身價矩陣碾壓，零封格局。" },
-        { id: "L6", d: "2026/06/25", t: "06:00", h: "克羅地亞", a: "加納", isReal: false, att: 52000, note: "克羅地亞歐陸控球體系略勝非洲黑星奔跑流。" }
+        { id: "L1", d: "2026/06/18", t: "04:00", h: "英格蘭", a: "克羅埃西亞", isReal: false, att: 84000, note: "英格蘭頂級強國加成對決格子軍團大賽經驗，鋒線轉化率較高。" },
+        { id: "L2", d: "2026/06/18", t: "07:00", h: "加納", a: "巴拿馬", isReal: false, att: 44000, note: "巴拿馬(0.4)數值處劣勢，加納運動能力主導。" },
+        { id: "L3", d: "2026/06/24", t: "04:00", h: "英格蘭", a: "加納", isReal: false, att: 75000, note: "硬實力利差明確，三獅軍團高空球與對抗加成顯著。" },
+        { id: "L4", d: "2026/06/24", t: "07:00", h: "巴拿馬", a: "克羅埃西亞", isReal: false, att: 51000, note: "格子軍團大師級傳控節奏能有效掐斷巴拿馬反擊點。" },
+        { id: "L5", d: "2026/06/28", t: "05:00", h: "巴拿馬", a: "英格蘭", isReal: false, att: 72000, note: "英格蘭核心攻擊群身價矩陣碾壓，零封格局。" },
+        { id: "L6", d: "2026/06/28", t: "05:00", h: "克羅埃西亞", a: "加納", isReal: false, att: 52000, note: "克羅地亞歐陸控球體系略勝非洲黑星奔跑流。" }
     ]
 };
 
