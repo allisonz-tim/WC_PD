@@ -168,19 +168,19 @@
                 elStatus.classList.add('status-danger');
                 elProgress.classList.add('bg-red-500');
                 elActionBox.classList.add('border-red-500');
-                elActionText.innerHTML = '<strong>極限擴容警告：</strong> 預估 QPS 遠超紅線。<br/>1. 立即調高 <code>order-center</code> 與 <code>order-server</code> 的 HPA 上限。<br/>2. 確保 <code>match-server</code> 與 <code>market-server</code> 的 CPU Node 負載不超過 40%。<br/>3. 準備降級腳本：若 5xx 錯誤發生，立即關閉 <code>report-server</code> 歷史報表功能。';
+                //elActionText.innerHTML = '<strong>極限擴容警告：</strong> 預估 QPS 遠超紅線。<br/>1. 立即調高 <code>order-center</code> 與 <code>order-server</code> 的 HPA 上限。<br/>2. 確保 <code>match-server</code> 與 <code>market-server</code> 的 CPU Node 負載不超過 40%。<br/>3. 準備降級腳本：若 5xx 錯誤發生，立即關閉 <code>report-server</code> 歷史報表功能。';
             } else if (predQps >= THRESHOLDS.warning) {
                 elStatus.textContent = '🟡 WARNING: MONITOR';
                 elStatus.classList.add('status-warning');
                 elProgress.classList.add('bg-yellow-500');
                 elActionBox.classList.add('border-yellow-500');
-                elActionText.innerHTML = '<strong>警戒狀態：</strong> 系統負載將達到高位。<br/>1. 密切監控賽事完結時 <code>settle-center</code> 的 CPU/RAM 飆升情形。<br/>2. 檢查 `aggregator-server` 是否有資料積壓 (lag) 現象。';
+                //elActionText.innerHTML = '<strong>警戒狀態：</strong> 系統負載將達到高位。<br/>1. 密切監控賽事完結時 <code>settle-center</code> 的 CPU/RAM 飆升情形。<br/>2. 檢查 `aggregator-server` 是否有資料積壓 (lag) 現象。';
             } else {
                 elStatus.textContent = '🟢 NORMAL';
                 elStatus.classList.add('status-normal');
                 elProgress.classList.add('bg-green-500');
                 elActionBox.classList.add('border-green-500');
-                elActionText.innerHTML = '系統負載預期在安全範圍內。維持常規監控即可。';
+                //elActionText.innerHTML = '系統負載預期在安全範圍內。維持常規監控即可。';
             }
         }
 
