@@ -31,9 +31,9 @@
                 <label class="block text-sm font-medium text-gray-300 mb-2">開賽時段 (Time Zone)</label>
                 <select id="tz" class="w-full bg-[#2d2d2d] border border-gray-600 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none transition-colors">
                     <option value="1.5">黃金/晚間 (20:00 - 00:00)</option>
-                    <option value="1.2">深夜 (00:01 - 03:00) </option>
-                    <option value="1.0" selected>早晨/白天 (06:00 - 19:59) </option>
-                    <option value="0.8">凌晨 (03:01 - 05:59) </option>
+                    <option value="1.2">深夜 (00:01 - 03:00)</option>
+                    <option value="1.0" selected>早晨/白天 (06:00 - 19:59)</option>
+                    <option value="0.8">凌晨 (03:01 - 05:59)</option>
                 </select>
             </div>
 
@@ -41,8 +41,8 @@
                 <label class="block text-sm font-medium text-gray-300 mb-2">球隊熱度 (Team Tier)</label>
                 <select id="team" class="w-full bg-[#2d2d2d] border border-gray-600 text-gray-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none transition-colors">
                     <option value="1.3" selected>S級強隊 (法國/英格蘭/西班牙/阿根廷/葡萄牙)</option>
-                    <option value="1.0">A級球隊（墨西哥/美國/挪威/摩洛哥/荷蘭/比利時/奧地利/克羅地亞/瑞士/哥倫比亞） </option>
-                    <option value="0.7">B級球隊（科特迪瓦/瑞典/厄瓜多爾/剛果/塞內加爾/阿爾及利亞/澳洲/埃及） </option>
+                    <option value="1.0">A級球隊（墨西哥/美國/挪威/摩洛哥/荷蘭/比利時/奧地利/克羅地亞/瑞士/哥倫比亞）</option>
+                    <option value="0.7">B級球隊（科特迪瓦/瑞典/厄瓜多爾/剛果/塞內加爾/阿爾及利亞/澳洲/埃及）</option>
                 </select>
             </div>
 
@@ -52,6 +52,7 @@
                     <option value="1.0">小組賽 (Group)</option>
                     <option value="1.3" selected>32強 (Round of 32)</option>
                     <option value="1.4">16強 (Round of 16)</option>
+                    <option value="1.5">8強 (Quarter-finals)</option>
                     <option value="1.6">準決賽/決賽 (Finals)</option>
                 </select>
             </div>
@@ -71,8 +72,8 @@
                 <div id="status-text" class="text-4xl md:text-5xl font-black mt-2 transition-colors duration-300">NORMAL</div>
                 <div class="w-full max-w-md mt-6 relative h-4 bg-gray-800 rounded-full overflow-hidden">
                     <div id="progress-bar" class="absolute top-0 left-0 h-full bg-green-500 transition-all duration-500 ease-out" style="width: 0%;"></div>
-                    <div class="absolute top-0 left-[60%] h-full w-[2px] bg-yellow-500/50"></div> <!-- Warning Threshold -->
-                    <div class="absolute top-0 left-[73.3%] h-full w-[2px] bg-red-500/50"></div>  <!-- Danger Threshold -->
+                    <div class="absolute top-0 left-[60%] h-full w-[2px] bg-yellow-500/50"></div>
+                    <div class="absolute top-0 left-[73.3%] h-full w-[2px] bg-red-500/50"></div>
                 </div>
                 <div class="w-full max-w-md mt-2 flex justify-between text-[10px] text-gray-500 font-mono">
                     <span>0 QPS</span>
@@ -119,10 +120,9 @@
         const THRESHOLDS = {
             warning: 450000,
             danger: 550000,
-            max_gauge: 750000 // For progress bar scaling
+            max_gauge: 750000
         };
 
-        // DOM Elements
         const elTz = document.getElementById('tz');
         const elTeam = document.getElementById('team');
         const elStage = document.getElementById('stage');
@@ -155,12 +155,11 @@
             elQps.textContent = formatNumber(predQps);
             elOrders.textContent = formatNumber(predOrders);
 
-            // Update Status & Action Plan
             elStatus.classList.remove('status-normal', 'status-warning', 'status-danger');
             elProgress.classList.remove('bg-green-500', 'bg-yellow-500', 'bg-red-500');
             elActionBox.classList.remove('border-green-500', 'border-yellow-500', 'border-red-500');
 
-            let pct = Math.min((predQps / THRESHOLDS.max_gauge) *100, 100);
+            let pct = Math.min((predQps / THRESHOLDS.max_gauge) * 100, 100);
             elProgress.style.width = `${pct}%`;
 
             if (predQps >= THRESHOLDS.danger) {
@@ -174,7 +173,7 @@
                 elStatus.classList.add('status-warning');
                 elProgress.classList.add('bg-yellow-500');
                 elActionBox.classList.add('border-yellow-500');
-                elActionText.innerHTML = '<strong>警戒狀態：</strong> 系統負載將達到高位。<br/>1. 密切監控賽事完結時 <code>settle-center</code> 的 CPU/RAM 飆升情形。<br/>2. 檢查 `aggregator-server` 是否有資料積壓 (lag) 現象。';
+                elActionText.innerHTML = '<strong>警戒狀態：</strong> 系統負載將達到高位。<br/>1. 密切監控賽事完結時 <code>settle-center</code> 的 CPU/RAM 飆升情形。<br/>2. 檢查 <code>aggregator-server</code> 是否有資料積壓 (lag) 現象。';
             } else {
                 elStatus.textContent = '🟢 NORMAL';
                 elStatus.classList.add('status-normal');
@@ -184,12 +183,10 @@
             }
         }
 
-        // Attach listeners
         elTz.addEventListener('change', calculate);
         elTeam.addEventListener('change', calculate);
         elStage.addEventListener('change', calculate);
 
-        // Initial calculation
         calculate();
     </script>
 </body>
